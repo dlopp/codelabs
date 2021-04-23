@@ -1,6 +1,6 @@
 $.getJSON('codelabs.json', function (data) {
   let src = data.map(function (i) {
-    return `<a href="./${id}/"
+    return `<a href="./${i.id}/"
       <div
         class="bg-gradient-to-r from-${i.color}-500 to-${i.color}-300 w-80 h-48 sm:w-96 sm:h-56 m-auto rounded-xl shadow-2xl transform hover:scale-110 transition-transform text-white relative">
         <div class="w-full px-8 absolute top-6 relative">
