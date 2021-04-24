@@ -5,14 +5,14 @@
     </header>
     <section class="main">
       <ul>
-        <li class="card">
-          <p>なんとかかんとかをする。</p>
-          <button>完了</button>
+        <li v-for="(todo, index) in todoList" :key="index" class="card">
+          <p>{{ todo }}</p>
+          <button @click.prevent="completeTodo(index)">完了</button>
         </li>
       </ul>
     </section>
-    <form class="form">
-      <input type="text" class="input">
+    <form @submit.prevent="addTodo" class="form">
+      <input type="text" class="input" v-model="todo">
       <button type="submit" class="button">
         Todo 登録 
       </button>
@@ -22,8 +22,28 @@
 
 <script lang="ts">
 import Vue from 'vue'
+
+interface Data {
+  todo: string
+  todoList: string[]
+}
+
 export default Vue.extend({
-  
+  data():Data {
+    return {
+      todo: '',
+      todoList: [] 
+    }
+  },
+  methods: {
+    addTodo() {
+      this.todoList.push(this.todo)
+      this.todo = ''
+    },
+    completeTodo(index: number) {
+      this.todoList.splice(index, 1)
+    }
+  }
 })
 </script>
 
