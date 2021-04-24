@@ -31,7 +31,7 @@ $.getJSON('codelabs.json', function (data) {
                 Time
               </p>
               <p class="font-bold tracking-more-wider text-sm">
-                ${i.time}
+                ${i.time} minutes
               </p>
             </div>
             <div>
