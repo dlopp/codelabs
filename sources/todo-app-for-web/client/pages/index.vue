@@ -1,75 +1,94 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        client
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div class="wrapper">
+    <header class="header">
+      <h1 class="headline">Todo App for Web</h1>
+    </header>
+    <section class="main">
+      <ul>
+        <li class="card">
+          <p>なんとかかんとかをする。</p>
+          <button>完了</button>
+        </li>
+      </ul>
+    </section>
+    <form class="form">
+      <input type="text" class="input">
+      <button type="submit" class="button">
+        Todo 登録 
+      </button>
+    </form>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-
-export default Vue.extend({})
+export default Vue.extend({
+  
+})
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
+
+* {
+  margin: 0; 
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Todo App の Style */
+.wrapper {
   min-height: 100vh;
+  position: relative;
+}
+
+/* headerのstyle */
+.header {
+  height: 96px;
+  width: 100%;
+  background-color: #93c5fd;
+}
+
+.headline {
+  font-size: 30px;
+  line-height: 96px;
+  margin-left: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+/* todoリストのstyle */
+.card {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  justify-content: space-between;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+/* 入力フォームのstyle */
+.form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: absolute;
+  bottom: 20px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.input {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 5px;
+  font-size: 20px;
+  padding-left: 10px;
 }
 
-.links {
-  padding-top: 15px;
+.button {
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  background: #93c5fd;
+  color: white;
+  border: none;
 }
+
 </style>
