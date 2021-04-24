@@ -9,7 +9,7 @@ https://dlopp.github.io/codelabs
 ├─ docs/ # docs以下をGitHub Pagesでホスティングしています。
 │  ├─ sample/     # Buildされたフォルダ
 │  ├─ index.html  # ランディングページ
-│  ├─ main.js     # ランディングページのカードコンポーネント的な
+│  ├─ card.js     # ランディングページのカードコンポーネント的な
 │  └─ codelabs.json # コンポーネントの変数の中身
 └─ codelabs/      # 作業ディレクトリ
    └─ sample/     # ハンズオンの内容が分かるディレクトリ名を付ける
