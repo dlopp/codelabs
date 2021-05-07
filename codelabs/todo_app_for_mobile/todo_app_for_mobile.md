@@ -112,5 +112,9 @@ Positive
 
 ## Scaffold()
 
-この白い画面は `Scaffold()` Widgetが作り出しています。  
-`Scaffold()` Widgetはすべての土台となるWidgetです。
+この白い画面は`Scaffold()`Widgetが作り出しています。  
+`Scaffold()`Widgetはすべての土台となるWidgetです。
+
+`Scaffold()`Widgetはたくさんのプロパティを持っていますが、今回使うのは`appBar`と`body`です。`appBar`になにかWidgetを持たせるとそこに表示されますし、`body`も同じです。２つの領域が作られるような感じです。
+
+![scaffold](img/scaffold.png)
