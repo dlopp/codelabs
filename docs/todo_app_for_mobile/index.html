@@ -145,6 +145,27 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
 
       </google-codelab-step>
     
+      <google-codelab-step label="Column()" duration="0">
+        <p>次に下のテキストボックスを作りたいのですが、下の画像のように、ToDo要素とテキストボックスが縦に並んでいます。Flutterの場合、要素を縦に並べるWidgetとして、<code>Column()</code>Widgetがあります。</p>
+<p class="image-container"><img alt="column" src="img\3a6da68c9c4a74e3.png"></p>
+<p><code>Column()</code>Widgetを設置します。<code>Scaffold()</code>Widgetの<code>body</code>領域に置きます。</p>
+<pre><code language="language-dart" class="language-dart">return Scaffold(
+      appBar: AppBar(
+        title: Text(&#39;Simple ToDo&#39;),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          
+        ],
+      ),
+    );
+</code></pre>
+<p><code>mainAxisAlignment: MainAxisAlignment.start,</code>とは、要素をどういう感じに並べるかの設定です。この場合、上から単純に並べるものです。他には、要素を等間隔に並べたり、中央に集中させたりできます。</p>
+
+
+      </google-codelab-step>
+    
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>

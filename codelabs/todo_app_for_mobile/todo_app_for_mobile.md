@@ -135,3 +135,28 @@ return Scaffold(
 `Text()`Widgetの`()`の中に`''`付きで文字を置くと、その文字が画面上に表示されます。
 
 ![appbar](img/appbar.png)
+
+## Column()
+
+次に下のテキストボックスを作りたいのですが、下の画像のように、ToDo要素とテキストボックスが縦に並んでいます。Flutterの場合、要素を縦に並べるWidgetとして、`Column()`Widgetがあります。
+
+![column](img/column.png)
+
+`Column()`Widgetを設置します。`Scaffold()`Widgetの`body`領域に置きます。
+
+```dart
+return Scaffold(
+      appBar: AppBar(
+        title: Text('Simple ToDo'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          
+        ],
+      ),
+    );
+```
+
+`mainAxisAlignment: MainAxisAlignment.start,`とは、要素をどういう感じに並べるかの設定です。この場合、上から単純に並べるものです。他には、要素を等間隔に並べたり、中央に集中させたりできます。  
+`children: [],`の中に並べたい要素を列挙していきます。
