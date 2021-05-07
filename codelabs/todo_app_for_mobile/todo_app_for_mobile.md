@@ -18,7 +18,9 @@ Duration: 0:02:00
 - 一つのプロジェクトファイルで Android、iOS、Web、Windows、MacOS、Linux アプリを作成可能
 - めっちゃ簡単
 
-このツールを利用して簡単なアプリを作ります。
+このツールを利用して簡単なToDoアプリを作ります。以下が完成モデルです。
+
+<img src="img/img/complete.gif" width="200">
 
 ## 利用する環境
 Duration: 0:04:00
@@ -106,3 +108,9 @@ Positive
 基礎になるコードを貼り付けたらRunボタンを押してみてください。  
 真っ白の画面が表示されるはずです。ここから画面を作っていきます。
 ![firstRun](img/firstRun.png)
+
+
+## Scaffold()
+
+この白い画面は `Scaffold()` Widgetが作り出しています。  
+`Scaffold()` Widgetはすべての土台となるWidgetです。
