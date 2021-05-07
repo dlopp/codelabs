@@ -161,7 +161,49 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
       ),
     );
 </code></pre>
-<p><code>mainAxisAlignment: MainAxisAlignment.start,</code>とは、要素をどういう感じに並べるかの設定です。この場合、上から単純に並べるものです。他には、要素を等間隔に並べたり、中央に集中させたりできます。</p>
+<p><code>mainAxisAlignment: MainAxisAlignment.start,</code>とは、要素をどういう感じに並べるかの設定です。この場合、上から単純に並べるものです。他には、要素を等間隔に並べたり、中央に集中させたりできます。<br><code>children: [],</code>の中に並べたい要素を列挙していきます。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ListTile()・Form()・TextFormField()" duration="0">
+        <p>下記のコードを書きましょう。</p>
+<pre><code language="language-dart" class="language-dart">children: [
+          ListTile(
+            title: Form(
+              child: TextFormField(
+              ),
+            ),
+          ),
+        ],
+</code></pre>
+<h2 is-upgraded>ListTile()</h2>
+<p class="image-container"><img alt="listTile" src="img\e4537fba16cf0dbc.png"></p>
+<p><code>ListTile()</code>Widgetも画面を分割するWidgetです。</p>
+<aside class="special"><p>ちなみに、<code>title</code>の左に<code>leading</code>という領域もあります。あとで使います。</p>
+</aside>
+<h2 is-upgraded>Form()・TextFormField()</h2>
+<p><code>Form()</code>Widgetは<code>TextFormField()</code>Widgetを使うための前提Widgetです。<code>TextFormField()</code>Widgetが実際に画面に表示されるテキストボックスです。</p>
+<p class="image-container"><img alt="textFormField" src="img\ab1efd045338a1e0.png"></p>
+<pre><code language="language-dart" class="language-dart">children: [
+          ListTile(
+              title: Form(
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), hintText: &#39;Todoを入力&#39;),
+                  controller: textbox,
+                ),
+              ),
+              trailing: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                        todos.add(textbox.text);
+                        textbox.clear();
+                    });
+                  },
+                  child: Text(&#39;追加&#39;))),
+        ],
+</code></pre>
 
 
       </google-codelab-step>

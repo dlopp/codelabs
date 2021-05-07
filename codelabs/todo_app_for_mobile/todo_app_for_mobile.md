@@ -160,3 +160,34 @@ return Scaffold(
 
 `mainAxisAlignment: MainAxisAlignment.start,`とは、要素をどういう感じに並べるかの設定です。この場合、上から単純に並べるものです。他には、要素を等間隔に並べたり、中央に集中させたりできます。  
 `children: [],`の中に並べたい要素を列挙していきます。
+
+## ListTile()・Form()・TextFormField()
+
+下記のコードを書きましょう。
+
+```dart
+children: [
+          ListTile(
+            title: Form(
+              child: TextFormField(
+              ),
+            ),
+          ),
+        ],
+```
+
+### ListTile()
+
+![listTile](img/listTile.png)
+
+`ListTile()`Widgetも画面を分割するWidgetです。
+
+Positive
+: ちなみに、`title`の左に`leading`という領域もあります。あとで使います。
+
+### Form()・TextFormField()
+
+`Form()`Widgetは`TextFormField()`Widgetを使うための前提Widgetです。`TextFormField()`Widgetが実際に画面に表示されるテキストボックスです。
+
+![textFormField](img/textFormField.png)
+
