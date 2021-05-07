@@ -10,7 +10,7 @@ status: Published
 ## Flutter とは
 Duration: 0:02:00
 
-![](img/flutter.png)
+![flutter](img/flutter.png)
 
 ### 概要
 - Google が開発しているアプリの作成環境
@@ -45,6 +45,9 @@ Positive
 1. **基礎になるコードをコピー**
   - 以下のコードをコピーしてください。
 
+Positive
+: 下記のコードは、Flutterプロジェクトファイルを作成したときに勝手に作られるサンプルコードに基づいています。お決まりの文言といった感じです。
+
 ```dart
 import 'package:flutter/material.dart';
 
@@ -75,3 +78,31 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 ```
+
+
+
+## UIを作るには
+Duration: 0:04:00
+
+### UI作りの考え方
+Flutter の場合、Widgetと呼ばれるUIパーツを組み合わせて画面を作っていきます。
+
+Positive
+: [Flutter:Widget一覧](https://qiita.com/matsukatsu/items/e289e30231fffb1e4502)を見てみると、たくさんあるのがわかります。
+
+### デザインの種類
+
+デザインにはたくさんの種類があります。モバイルアプリでは以下の２つが有名です。結局AndroidっぽいかiOSっぽいかになります。
+
+- マテリアル・デザイン
+  - Googleが推しているデザイン。Flutterはこれです。  
+  ![material](img/material.png)
+- クパチーノ・デザイン
+  - Appleが推しているデザイン。Apple本社がクパチーノにあります。  
+  <img src="img/cupertino.png" width="250">
+
+### Runしてみる
+
+基礎になるコードを貼り付けたらRunボタンを押してみてください。  
+真っ白の画面が表示されるはずです。ここから画面を作っていきます。
+![firstRun](img/firstRun.png)

@@ -28,7 +28,7 @@
                   feedback-link="">
     
       <google-codelab-step label="Flutter とは" duration="2">
-        <p class="image-container"><img src="img\c955c81ba85e5e25.png"></p>
+        <p class="image-container"><img alt="flutter" src="img\c955c81ba85e5e25.png"></p>
 <h2 is-upgraded>概要</h2>
 <ul>
 <li>Google が開発しているアプリの作成環境</li>
@@ -64,6 +64,8 @@
 </ul>
 </li>
 </ol>
+<aside class="special"><p>下記のコードは、Flutterプロジェクトファイルを作成したときに勝手に作られるサンプルコードに基づいています。お決まりの文言といった感じです。</p>
+</aside>
 <pre><code language="language-dart" class="language-dart">import &#39;package:flutter/material.dart&#39;;
 
 void main() {
@@ -93,6 +95,29 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
   }
 }
 </code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="UIを作るには" duration="4">
+        <h2 is-upgraded>UI作りの考え方</h2>
+<p>Flutter の場合、Widgetと呼ばれるUIパーツを組み合わせて画面を作っていきます。</p>
+<aside class="special"><p><a href="https://qiita.com/matsukatsu/items/e289e30231fffb1e4502" target="_blank">Flutter:Widget一覧</a>を見てみると、たくさんあるのがわかります。</p>
+</aside>
+<h2 is-upgraded>デザインの種類</h2>
+<p>デザインにはたくさんの種類があります。モバイルアプリでは以下の２つが有名です。結局AndroidっぽいかiOSっぽいかになります。</p>
+<ul>
+<li>マテリアル・デザイン  <ul>
+<li>Googleが推しているデザイン。Flutterはこれです。<br><img alt="material" src="img\44637841783beeaa.png"></li>
+</ul>
+</li>
+<li>クパチーノ・デザイン  <ul>
+<li>Appleが推しているデザイン。Apple本社がクパチーノにあります。<br><img style="width: 250.00px" src="img\a07b7a5b5c9e39f8.png"></li>
+</ul>
+</li>
+</ul>
+<h2 is-upgraded>Runしてみる</h2>
+<p>基礎になるコードを貼り付けたらRunボタンを押してみてください。<br> 真っ白の画面が表示されるはずです。ここから画面を作っていきます。 <img alt="firstRun" src="img\a2ac23c95c667415.png"></p>
 
 
       </google-codelab-step>
