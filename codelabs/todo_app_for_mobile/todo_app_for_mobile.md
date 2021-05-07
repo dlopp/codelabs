@@ -20,7 +20,7 @@ Duration: 0:02:00
 
 このツールを利用して簡単なToDoアプリを作ります。以下が完成モデルです。
 
-<img src="img/img/complete.gif" width="200">
+![complete](img/complete.gif)
 
 ## 利用する環境
 Duration: 0:04:00
