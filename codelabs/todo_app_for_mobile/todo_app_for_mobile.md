@@ -118,3 +118,20 @@ Positive
 `Scaffold()`Widgetはたくさんのプロパティを持っていますが、今回使うのは`appBar`と`body`です。`appBar`になにかWidgetを持たせるとそこに表示されますし、`body`も同じです。２つの領域が作られるような感じです。
 
 ![scaffold](img/scaffold.png)
+
+## AppBar()・Text()
+
+`appBar`に`AppBar()`Widgetを持たせましょう。これで画面上部にバーが表示されます。
+
+```dart
+return Scaffold(
+      appBar: AppBar(
+        title: Text('Simple ToDo'),
+      ),
+    );
+```
+
+`AppBar()`Widgetには`title`プロパティがあり、そこに`Text()`Widgetを置いています。`AppBar()`Widgetには`title`という領域があるということです。  
+`Text()`Widgetの`()`の中に`''`付きで文字を置くと、その文字が画面上に表示されます。
+
+![appbar](img/appbar.png)
