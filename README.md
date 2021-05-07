@@ -25,7 +25,8 @@ codelabsディレクトリ配下にディレクトリを作って、記事を書
 
 ## 🛠️ Dev
 1. ブランチ切る
-2. マークダウン書く
+2. マークダウン書く  
+   **改行コードは必ず「LF」に設定してください。この設定を忘れると、改行を認識してくれないため記述通りに表示されなくなります。**
 3. meta情報をjsonに記述する
 ```json
 [ 
@@ -43,10 +44,11 @@ codelabsディレクトリ配下にディレクトリを作って、記事を書
 ```
 5. Buildする
 6. ローカルサーバで表示を確認する
-7. pushする。
+7. ハンズオンで作るアプリがある場合は、sourcesディレクトリ配下に記述してください。
+8. pushする。
 
 ## 😋 Build
-Docker又は、Go & claat が必要です。
+Docker又は、Go & claat が必要です。(Docker推奨)
 codelabs配下のマークダウンファイルをdocs配下にBuildします。  
 Build後は、そのまま`add && commit`してください。
 
@@ -72,8 +74,7 @@ Build後は、そのまま`add && commit`してください。
     $ claat export -o docs codelabs/sample/sample.md
 ```
 
-## 🏜️ Serve
-Docker又は、Go & claat が必要です。  
+## ✈️ Serve  
 
 ### Docker
 ```bash
