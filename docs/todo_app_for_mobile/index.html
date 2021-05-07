@@ -27,23 +27,72 @@
                   environment="web"
                   feedback-link="">
     
-      <google-codelab-step label="Flutter とは" duration="0">
-        <p> Duration: 0:02:00  <img src="img\c955c81ba85e5e25.png">  <strong>概要  </strong></p>
+      <google-codelab-step label="Flutter とは" duration="2">
+        <p class="image-container"><img src="img\c955c81ba85e5e25.png"></p>
+<h2 is-upgraded>概要</h2>
 <ul>
-<li>Google が開発しているアプリの作成環境 </li>
-<li>2018 年 12 月 4 日に発表 </li>
-<li>一つのプロジェクトファイルで Android、iOS、Web、Windows、MacOS、Linux アプリを作成可能 普通はそれぞれの OS に合わせて別々のプロジェクトファイルを作る必要がある </li>
-<li>めっちゃ簡単  このツールを利用して簡単なアプリを作ります。    利用する環境    Duration: 0:04:00    <h3 is-upgraded>ツール </h3>
-   Web 上で Flutter を動かせる<a href="https://dartpad.dev/?" target="_blank">DartPad</a>を利用します。  各自の PC に Flutter の開発環境を構築してもいいですが...  </li>
-<li>大量のファイルをダウンロードする必要がある </li>
-<li>環境変数の設定など、様々な設定をする必要がある </li>
-<li>筆者のそこそこスペックの PC と光回線を使っても 30 分くらいかかる  ということで、Web 上で動く<a href="https://dartpad.dev/?" target="_blank">DartPad</a>を利用したほうが楽ちんなのです。    <h3 is-upgraded>最初に </h3>
-  </li>
+<li>Google が開発しているアプリの作成環境</li>
+<li>2018 年 12 月 4 日に発表</li>
+<li>一つのプロジェクトファイルで Android、iOS、Web、Windows、MacOS、Linux アプリを作成可能</li>
+<li>めっちゃ簡単</li>
 </ul>
+<p>このツールを利用して簡単なアプリを作ります。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="利用する環境" duration="4">
+        <h2 is-upgraded>ツール</h2>
+<aside class="special"><p>Web 上で Flutter を動かせる <a href="https://dartpad.dev/?" target="_blank">DartPad</a>を利用します。</p>
+</aside>
+<p>各自の PC に Flutter の開発環境を構築してもいいですが...</p>
+<ul>
+<li>大量のファイルをダウンロードする必要がある</li>
+<li>環境変数の設定など、様々な設定をする必要がある</li>
+<li>筆者のそこそこスペックの PC と光回線を使っても 30 分くらいかかる</li>
+</ul>
+<p>ということで、Web 上で動く<a href="https://dartpad.dev/?" target="_blank">DartPad</a>を利用したほうが楽ちんなのです。</p>
+<h2 is-upgraded>最初に</h2>
 <ol type="1">
-<li>Null Safety を解除する 下のバーにボタンがあるので解除してください （Null の扱いを記述するのがややこしいのと、今は必要ない知識だからです） </li>
-<li>基礎になるコードをコピー 以下のコードをコピーしてください。  <code>Dart<br>import &#39;package:flutter/material.dart&#39;;<br><br>void main() {<br>runApp(MyApp());<br>}<br><br>class MyApp extends StatelessWidget {<br>@override<br>Widget build(BuildContext context) {<br>return MaterialApp(<br>  debugShowCheckedModeBanner: false,<br>  theme: ThemeData(primarySwatch: Colors.blue),<br>  home: MyHomePage(),<br>);<br>}<br>}<br><br>class MyHomePage extends StatefulWidget {<br>@override<br>_MyHomePageState createState() =&gt; _MyHomePageState();<br>}<br><br>class _MyHomePageState extends State&lt;MyHomePage&gt; {<br>@override<br>Widget build(BuildContext context) {<br>return Scaffold();<br>}<br>}<br></code></li>
+<li><strong>Null Safety を解除する  </strong><ul>
+<li>下のバーにボタンがあるので解除してください</li>
+<li>Null の扱いを記述するのがややこしいのと、今は必要ない知識だからです</li>
+</ul>
+</li>
+<li><strong>基礎になるコードをコピー  </strong><ul>
+<li>以下のコードをコピーしてください。</li>
+</ul>
+</li>
 </ol>
+<pre><code language="language-dart" class="language-dart">import &#39;package:flutter/material.dart&#39;;
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() =&gt; _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+</code></pre>
 
 
       </google-codelab-step>
