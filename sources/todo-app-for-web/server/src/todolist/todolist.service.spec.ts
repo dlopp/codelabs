@@ -10,7 +10,7 @@ const mockRepository = () => ({
   findOne: jest.fn(),
   save: jest.fn(),
   delete: jest.fn(),
-})
+});
 
 describe('TodolistService', () => {
   let todolistService: TodolistService;
@@ -20,7 +20,7 @@ describe('TodolistService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         TodolistService,
-        { provide: getRepositoryToken(Todo), useFactory: mockRepository }
+        { provide: getRepositoryToken(Todo), useFactory: mockRepository },
       ],
     }).compile();
 
@@ -28,14 +28,14 @@ describe('TodolistService', () => {
     todolistRepository = await module.get(getRepositoryToken(Todo));
   });
 
-  describe("getTodolist", () => {
-    it("get all todos", async () => {
-      todolistRepository.find.mockResolvedValue("mockTodo");
+  describe('getTodolist', () => {
+    it('get all todos', async () => {
+      todolistRepository.find.mockResolvedValue('mockTodo');
       expect(todolistRepository.find).not.toHaveBeenCalled;
 
       const result = await todolistService.getTodolist();
       expect(todolistRepository.find).toHaveBeenCalled();
       expect(result).toEqual('mockTodo');
-    })
-  })
+    });
+  });
 });
