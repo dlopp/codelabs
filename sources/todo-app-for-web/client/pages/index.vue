@@ -5,52 +5,66 @@
     </header>
     <section class="main">
       <ul>
-        <li v-for="(todo, index) in todoList" :key="index" class="card">
-          <p>{{ todo }}</p>
-          <button @click.prevent="completeTodo(index)">完了</button>
+        <li v-for="todo in todoList" :key="todo.id" class="card">
+          <p>{{ todo.title }}</p>
+          <button @click.prevent="completeTodo(todo.id)">完了</button>
         </li>
       </ul>
     </section>
     <form @submit.prevent="addTodo" class="form">
-      <input type="text" class="input" v-model="todo">
-      <button type="submit" class="button">
-        Todo 登録 
-      </button>
+      <input type="text" class="input" v-model="title" />
+      <button type="submit" class="button">Todo 登録</button>
     </form>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 
 interface Data {
-  todo: string
-  todoList: string[]
+  title: string;
+  todoList: {
+    id: number;
+    title: string;
+  }[];
 }
 
 export default Vue.extend({
-  data():Data {
+  async asyncData({ $axios }) {
+    const todoList = await $axios.$get("http://localhost:8080/todolist");
     return {
-      todo: '',
-      todoList: [] 
-    }
+      todoList,
+    };
+  },
+  data(): Data {
+    return {
+      title: "",
+      todoList: [],
+    };
   },
   methods: {
-    addTodo() {
-      this.todoList.push(this.todo)
-      this.todo = ''
+    async getTodoList() {
+      const todoList = await this.$axios.$get("http://localhost:8080/todolist");
+      this.todoList = todoList;
     },
-    completeTodo(index: number) {
-      this.todoList.splice(index, 1)
-    }
-  }
-})
+    async addTodo() {
+      await this.$axios.$post("http://localhost:8080/todolist", {
+        title: this.title,
+      });
+      this.title = "";
+      await this.getTodoList();
+    },
+    async completeTodo(id: number) {
+      await this.$axios.$delete(`http://localhost:8080/todolist/${id}`);
+      await this.getTodoList();
+    },
+  },
+});
 </script>
 
 <style>
-
 * {
-  margin: 0; 
+  margin: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -110,5 +124,4 @@ export default Vue.extend({
   color: white;
   border: none;
 }
-
 </style>
