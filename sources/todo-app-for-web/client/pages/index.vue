@@ -5,9 +5,9 @@
     </header>
     <section class="main">
       <ul>
-        <li v-for="todo in todoList" :key="todo.id" class="card">
+        <li v-for="(todo, index) in todoList" :key="todo.id" class="card">
           <p>{{ todo.title }}</p>
-          <button @click.prevent="completeTodo(todo.id)">完了</button>
+          <button @click.prevent="completeTodo(todo.id, index)">完了</button>
         </li>
       </ul>
     </section>
@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { Context } from "@nuxt/types"
 
 interface Data {
   title: string;
@@ -30,8 +31,9 @@ interface Data {
 }
 
 export default Vue.extend({
-  async asyncData({ $axios }) {
-    const todoList = await $axios.$get("http://localhost:8080/todolist");
+  async asyncData(context :Context) {
+    const { app } = context
+    const todoList = await app.$axios.$get("http://localhost:8080/todolist");
     return {
       todoList,
     };
@@ -43,20 +45,16 @@ export default Vue.extend({
     };
   },
   methods: {
-    async getTodoList() {
-      const todoList = await this.$axios.$get("http://localhost:8080/todolist");
-      this.todoList = todoList;
-    },
     async addTodo() {
-      await this.$axios.$post("http://localhost:8080/todolist", {
+      const todo = await this.$axios.$post("http://localhost:8080/todolist", {
         title: this.title,
       });
+      this.todoList.push(todo)
       this.title = "";
-      await this.getTodoList();
     },
-    async completeTodo(id: number) {
-      await this.$axios.$delete(`http://localhost:8080/todolist/${id}`);
-      await this.getTodoList();
+    async completeTodo(id: number, index: number) {
+      this.$axios.$delete(`http://localhost:8080/todolist/${id}`);
+      this.todoList.splice(index, 1)
     },
   },
 });
