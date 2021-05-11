@@ -78,7 +78,9 @@ Docker又は、Go & claat が必要です。
 ### Docker
 ```bash
   # ローカルサーバー起動
-    $ docker run --rm -v ${pwd}:/work -w /work -p 9090:9090 dlopp/claat serve -addr 0.0.0.0:9090
+    $ docker run --name codelabs --rm -v ${pwd}:/work -w /work -p 9090:9090 dlopp/claat serve -addr 0.0.0.0:9090
+  # コンテナ停止
+    $ docker stop codelabs
 ```
 
 ### Go & claat
