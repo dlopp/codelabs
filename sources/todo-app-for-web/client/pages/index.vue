@@ -1,26 +1,28 @@
 <template>
   <div class="wrapper">
     <header class="header">
-      <h1 class="headline">Todo App for Web</h1>
+      <div class="container">
+        <h1 class="headline">Todo App for Web</h1>
+      </div>
     </header>
     <section class="main">
       <ul>
         <li v-for="(todo, index) in todoList" :key="todo.id" class="card">
-          <p>{{ todo.title }}</p>
-          <button @click.prevent="completeTodo(todo.id, index)">完了</button>
+          <p class="todo">{{ todo.title }}</p>
+          <button class="done" @click.prevent="completeTodo(todo.id, index)">完了</button>
         </li>
       </ul>
+      <form @submit.prevent="addTodo" class="form">
+        <input type="text" class="input" v-model="title" />
+        <button type="submit" class="button">Todo 登録</button>
+      </form>
     </section>
-    <form @submit.prevent="addTodo" class="form">
-      <input type="text" class="input" v-model="title" />
-      <button type="submit" class="button">Todo 登録</button>
-    </form>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { Context } from "@nuxt/types"
+import { Context } from "@nuxt/types";
 
 interface Data {
   title: string;
@@ -31,8 +33,8 @@ interface Data {
 }
 
 export default Vue.extend({
-  async asyncData(context :Context) {
-    const { app } = context
+  async asyncData(context: Context) {
+    const { app } = context;
     const todoList = await app.$axios.$get("http://localhost:8080/todolist");
     return {
       todoList,
@@ -49,18 +51,24 @@ export default Vue.extend({
       const todo = await this.$axios.$post("http://localhost:8080/todolist", {
         title: this.title,
       });
-      this.todoList.push(todo)
+      this.todoList.push(todo);
       this.title = "";
     },
     async completeTodo(id: number, index: number) {
       this.$axios.$delete(`http://localhost:8080/todolist/${id}`);
-      this.todoList.splice(index, 1)
+      this.todoList.splice(index, 1);
     },
   },
 });
 </script>
 
 <style>
+:root {
+  --main-color: #93c5fd;
+  --hover-color: #23c5fd;
+}
+
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -73,11 +81,21 @@ export default Vue.extend({
   position: relative;
 }
 
+.main {
+  margin: 10px auto;
+  max-width: 36rem; 
+}
+
+.container {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
 /* headerのstyle */
 .header {
   height: 96px;
   width: 100%;
-  background-color: #93c5fd;
+  background-color: var(--main-color);
 }
 
 .headline {
@@ -92,24 +110,23 @@ export default Vue.extend({
 .card {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 /* 入力フォームのstyle */
 .form {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   padding: 0 20px;
   position: absolute;
   bottom: 20px;
 }
 
 .input {
-  width: 80%;
-  margin: 0 auto;
   border-radius: 5px;
   font-size: 20px;
   padding-left: 10px;
+  width: 400px;
+  margin-right: 10px;
 }
 
 .button {
@@ -118,8 +135,32 @@ export default Vue.extend({
   cursor: pointer;
   font-size: 20px;
   font-weight: bold;
-  background: #93c5fd;
+  background: var(--main-color);
   color: white;
   border: none;
 }
+
+.button:hover {
+  background-color: var(--hover-color);
+}
+
+.todo {
+  font-size: 1.5rem;
+  margin-top: 5px;
+}
+
+.done {
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  color: white;
+  background-color: var(--main-color);
+  border: none;
+  cursor: pointer;
+}
+
+.done:hover {
+  background-color: var(--hover-color);
+}
+
 </style>
