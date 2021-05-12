@@ -191,3 +191,81 @@ Positive
 
 ![textFormField](img/textFormField.png)
 
+## InputDecoration()・OutlineInputBorder()・ElevatedButton()
+
+### InputDecoration()・OutlineInputBorder()
+
+テクストボックスは見た目や情報を変えることができます。  
+下記のようなWidgetを置いてみましょう。
+
+```dart
+children: [
+          ListTile(
+            title: Form(
+              child: TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), hintText: 'Todoを入力'),
+              ),
+            ),
+          ),
+        ],
+```
+
+`TextFormField()`の`decoration`プロパティに`InputDecoration()`Widgetを置くと装飾ができるようになります。  
+`border`プロパティに`OutlineInputBorder()`Widgetを置くと、テクストボックスが縁取られたデザインになります。  
+`hintText`プロパティはテキストボックス内に何を書くべきかのヒント文章を表示できます。
+
+![decoration](img/decoration.png)
+
+### ElevatedButton()
+
+テキストボックスの右にボタンを置きましょう。  
+`ListTile()`Widgetの`trailing`プロパティにボタンのWidgetを置けば、テクストボックスの右にボタンを置けそうです。
+
+```dart
+trailing: ElevatedButton(
+      onPressed: () {
+      },
+      child: Text('追加')
+),
+```
+
+ボタンにはいくつか種類がありますが、`ElevatedButton()`が見やすいと思います。  
+`child`プロパティに`Text()`Widgetでボタン内に文字を表示できます。  
+`onPressed`プロパティはボタンが押されたときにどんな処理をするのかを記述します。
+
+![button](img/button.png)
+
+```dart
+children: [
+          ListTile(
+            title: Form(
+              child: TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), hintText: 'Todoを入力'),
+                controller: textbox,
+              ),
+            ),
+          ),
+        ],
+```
+```dart
+children: [
+          ListTile(
+              title: Form(
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), hintText: 'Todoを入力'),
+                  controller: textbox,
+                ),
+              ),
+              trailing: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                        todos.add(textbox.text);
+                        textbox.clear();
+                    });
+                  },
+                  child: Text('追加'))),
+        ],
+```

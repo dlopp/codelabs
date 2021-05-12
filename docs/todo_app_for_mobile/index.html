@@ -185,6 +185,48 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
 <h2 is-upgraded>Form()・TextFormField()</h2>
 <p><code>Form()</code>Widgetは<code>TextFormField()</code>Widgetを使うための前提Widgetです。<code>TextFormField()</code>Widgetが実際に画面に表示されるテキストボックスです。</p>
 <p class="image-container"><img alt="textFormField" src="img\ab1efd045338a1e0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="InputDecoration()・OutlineInputBorder()・ElevatedButton()" duration="0">
+        <h2 is-upgraded>InputDecoration()・OutlineInputBorder()</h2>
+<p>テクストボックスは見た目や情報を変えることができます。<br> 下記のようなWidgetを置いてみましょう。</p>
+<pre><code language="language-dart" class="language-dart">children: [
+          ListTile(
+            title: Form(
+              child: TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), hintText: &#39;Todoを入力&#39;),
+              ),
+            ),
+          ),
+        ],
+</code></pre>
+<p><code>TextFormField()</code>の<code>decoration</code>プロパティに<code>InputDecoration()</code>Widgetを置くと装飾ができるようになります。<br><code>border</code>プロパティに<code>OutlineInputBorder()</code>Widgetを置くと、テクストボックスが縁取られたデザインになります。<br><code>hintText</code>プロパティはテキストボックス内に何を書くべきかのヒント文章を表示できます。</p>
+<p class="image-container"><img alt="decoration" src="img\808794405945f1a0.png"></p>
+<h2 is-upgraded>ElevatedButton()</h2>
+<p>テキストボックスの右にボタンを置きましょう。<br><code>ListTile()</code>Widgetの<code>trailing</code>プロパティにボタンのWidgetを置けば、テクストボックスの右にボタンを置けそうです。</p>
+<pre><code language="language-dart" class="language-dart">trailing: ElevatedButton(
+      onPressed: () {
+      },
+      child: Text(&#39;追加&#39;)
+),
+</code></pre>
+<p>ボタンにはいくつか種類がありますが、<code>ElevatedButton()</code>が見やすいと思います。<br><code>child</code>プロパティに<code>Text()</code>Widgetでボタン内に文字を表示できます。<br><code>onPressed</code>プロパティはボタンが押されたときにどんな処理をするのかを記述します。</p>
+<p class="image-container"><img alt="button" src="img\20fa819d5a880f52.png"></p>
+<pre><code language="language-dart" class="language-dart">children: [
+          ListTile(
+            title: Form(
+              child: TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), hintText: &#39;Todoを入力&#39;),
+                controller: textbox,
+              ),
+            ),
+          ),
+        ],
+</code></pre>
 <pre><code language="language-dart" class="language-dart">children: [
           ListTile(
               title: Form(
