@@ -57,7 +57,7 @@ export default Vue.extend({
     },
     async completeTodo(id: number, index: number) {
       try {
-        this.$axios.$delete(`http://localhost:8080/todolist/${id}`); 
+        await this.$axios.$delete(`http://localhost:8080/todolist/${id}`); 
         this.todoList.splice(index, 1);
       } catch(err) {
         alert('エラーが発生しました。')
