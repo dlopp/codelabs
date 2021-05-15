@@ -1,5 +1,6 @@
 import { NuxtConfig } from '@nuxt/types'
 import bootstrap from '../server/dist/main'
+const isDev = process.env.NODE_ENV === 'development';
 
 const config: NuxtConfig = async () => ({
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -31,7 +32,7 @@ const config: NuxtConfig = async () => ({
     '@nuxt/typescript-build',
   ],
 
-  serverMiddleware: [{path: "api", handler: await bootstrap}],
+  serverMiddleware: isDev ? [] : [{ path: '/api', handler: await bootstrap() }],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -41,7 +42,7 @@ const config: NuxtConfig = async () => ({
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-      baseURL: "http://localhost:3100/api"
+      baseURL: isDev ? 'http://localhost:8080/api' : 'http://localhost:3100/api'
   },
 })
 
