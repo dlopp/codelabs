@@ -48,15 +48,20 @@ export default Vue.extend({
   },
   methods: {
     async addTodo() {
-      const todo = await this.$axios.$post("http://localhost:8080/todolist", {
+      const res = await this.$axios.$post("http://localhost:8080/todolist", {
         title: this.title,
       });
-      this.todoList.push(todo);
+      
+      this.todoList.push(res);
       this.title = "";
     },
     async completeTodo(id: number, index: number) {
-      this.$axios.$delete(`http://localhost:8080/todolist/${id}`);
-      this.todoList.splice(index, 1);
+      try {
+        this.$axios.$delete(`http://localhost:8080/todolist/${id}`); 
+        this.todoList.splice(index, 1);
+      } catch(err) {
+        alert('エラーが発生しました。')
+      }
     },
   },
 });
