@@ -15,6 +15,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       password: this.configService.get<string>('DB_PASS'),
       synchronize: true, // DBの初回マイグレーションを許可
       entities: [__dirname + '/../**/*.entity.{js,ts}'],
+      keepConnectionAlive: true
     };
   }
 }

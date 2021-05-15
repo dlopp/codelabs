@@ -1,6 +1,7 @@
 import { NuxtConfig } from '@nuxt/types'
+import bootstrap from '../server/dist/main'
 
-const config: NuxtConfig = {
+const config: NuxtConfig = async () => ({
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: true,
 
@@ -17,6 +18,10 @@ const config: NuxtConfig = {
     ],
   },
 
+  server: {
+      port: 3100
+  },
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -26,6 +31,8 @@ const config: NuxtConfig = {
     '@nuxt/typescript-build',
   ],
 
+  serverMiddleware: [{path: "api", handler: await bootstrap}],
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -33,7 +40,9 @@ const config: NuxtConfig = {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
-}
+  axios: {
+      baseURL: "http://localhost:3100/api"
+  },
+})
 
 export default config

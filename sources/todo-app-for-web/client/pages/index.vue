@@ -35,7 +35,7 @@ interface Data {
 export default Vue.extend({
   async asyncData(context: Context) {
     const { app } = context;
-    const todoList = await app.$axios.$get("http://localhost:8080/todolist");
+    const todoList = await app.$axios.$get("/todolist");
     return {
       todoList,
     };
@@ -48,7 +48,7 @@ export default Vue.extend({
   },
   methods: {
     async addTodo() {
-      const res = await this.$axios.$post("http://localhost:8080/todolist", {
+      const res = await this.$axios.$post("/todolist", {
         title: this.title,
       });
       
@@ -57,7 +57,7 @@ export default Vue.extend({
     },
     async completeTodo(id: number, index: number) {
       try {
-        await this.$axios.$delete(`http://localhost:8080/todolist/${id}`); 
+        await this.$axios.$delete(`/todolist/${id}`); 
         this.todoList.splice(index, 1);
       } catch(err) {
         alert('エラーが発生しました。')
