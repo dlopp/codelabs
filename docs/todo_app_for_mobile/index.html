@@ -215,37 +215,37 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
 </code></pre>
 <p>ボタンにはいくつか種類がありますが、<code>ElevatedButton()</code>が見やすいと思います。<br><code>child</code>プロパティに<code>Text()</code>Widgetでボタン内に文字を表示できます。<br><code>onPressed</code>プロパティはボタンが押されたときにどんな処理をするのかを記述します。</p>
 <p class="image-container"><img alt="button" src="img\20fa819d5a880f52.png"></p>
-<pre><code language="language-dart" class="language-dart">children: [
-          ListTile(
-            title: Form(
-              child: TextFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), hintText: &#39;Todoを入力&#39;),
-                controller: textbox,
-              ),
-            ),
-          ),
-        ],
-</code></pre>
-<pre><code language="language-dart" class="language-dart">children: [
-          ListTile(
-              title: Form(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), hintText: &#39;Todoを入力&#39;),
-                  controller: textbox,
-                ),
-              ),
-              trailing: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                        todos.add(textbox.text);
-                        textbox.clear();
-                    });
-                  },
-                  child: Text(&#39;追加&#39;))),
-        ],
-</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ボタンが押されたときの処理" duration="0">
+        <p>さあ、ここまで画面にUI要素をただ置いていく作業でした。ここからプログラミングらしいことをしてみましょう。</p>
+<h2 is-upgraded>実装する機能</h2>
+<p>以下の機能を実装します</p>
+<ul>
+<li>テキストボックス内に書かれた文字を配列に格納</li>
+</ul>
+<h2 is-upgraded>考え方</h2>
+<p>実装する機能を具体的に言葉で説明すると、<br><strong>「ボタンが押されたときに、テキストボックス内に書かれた文字を認識して、どこかに保存する」</strong>です。つまり、</p>
+<ul>
+<li>現状だとボタンとテキストボックスは赤の他人状態です。何も関係性はありません。ボタンを押すとテキストボックス内を参照させる必要があります。</li>
+<li>「どこか」に当てはまる場所は、実際のアプリであればサーバーにあたります。様々なデータを保存しておく場所です。ただし、ちょっと大変なので今回は<strong>配列</strong>に保存してみましょう。</li>
+</ul>
+<h2 is-upgraded>配列とは</h2>
+<ul>
+<li>配列の前に、変数という概念を知りましょう。変数とは、ずばり<strong>「箱」</strong>です。文字列、数字、命令など、なんでも入ります。使い方は、<br></li>
+</ul>
+<ol type="1">
+<li>箱を用意（名前をつける）して、なにか入れる</li>
+<li>箱の名前をコード上に書く これだけです。使いたいときにはこの名前をコード上に書くと、コンピューターが箱の中身を展開して使ってくれます。</li>
+</ol>
+<p class="image-container"><img alt="hensuu" src="img\323ae567e72af4cf.png"></p>
+<ul>
+<li>次に配列とは、<strong>「箱の中に仕切りがついている箱」</strong>です。イメージはマンションに近いと思います。</li>
+</ul>
+<p class="image-container"><img alt="manshon" src="img\b6c6f04cae17308b.png"></p>
+<p>Aマンションの１号室には「あああ」という文字列が入っています。コード上で「Aマンションの１号室！」と呼ぶと、展開されて「あああ」が取り出されます。この「Aマンション」にあたるのが<strong>配列名</strong>です。</p>
 
 
       </google-codelab-step>

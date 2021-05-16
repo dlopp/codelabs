@@ -236,36 +236,33 @@ trailing: ElevatedButton(
 
 ![button](img/button.png)
 
-```dart
-children: [
-          ListTile(
-            title: Form(
-              child: TextFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), hintText: 'Todoを入力'),
-                controller: textbox,
-              ),
-            ),
-          ),
-        ],
-```
-```dart
-children: [
-          ListTile(
-              title: Form(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Todoを入力'),
-                  controller: textbox,
-                ),
-              ),
-              trailing: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                        todos.add(textbox.text);
-                        textbox.clear();
-                    });
-                  },
-                  child: Text('追加'))),
-        ],
-```
+## ボタンが押されたときの処理
+
+さあ、ここまで画面にUI要素をただ置いていく作業でした。ここからプログラミングらしいことをしてみましょう。  
+
+### 実装する機能
+
+以下の機能を実装します
+- テキストボックス内に書かれた文字を配列に格納
+
+### 考え方
+
+実装する機能を具体的に言葉で説明すると、  
+**「ボタンが押されたときに、テキストボックス内に書かれた文字を認識して、どこかに保存する」**です。つまり、
+- 現状だとボタンとテキストボックスは赤の他人状態です。何も関係性はありません。ボタンを押すとテキストボックス内を参照させる必要があります。
+- 「どこか」に当てはまる場所は、実際のアプリであればサーバーにあたります。様々なデータを保存しておく場所です。ただし、ちょっと大変なので今回は**配列**に保存してみましょう。
+
+### 配列とは
+
+- 配列の前に、変数という概念を知りましょう。変数とは、ずばり**「箱」**です。文字列、数字、命令など、なんでも入ります。使い方は、  
+1. 箱を用意（名前をつける）して、なにか入れる
+1. 箱の名前をコード上に書く
+これだけです。使いたいときにはこの名前をコード上に書くと、コンピューターが箱の中身を展開して使ってくれます。
+
+![hensuu](img/hensuu.png)
+
+- 次に配列とは、**「箱の中に仕切りがついている箱」**です。イメージはマンションに近いと思います。
+
+![manshon](img/manshon.png)
+
+Aマンションの１号室には「あああ」という文字列が入っています。コード上で「Aマンションの１号室！」と呼ぶと、展開されて「あああ」が取り出されます。この「Aマンション」にあたるのが**配列名**です。
