@@ -250,6 +250,46 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
 
       </google-codelab-step>
     
+      <google-codelab-step label="実装" duration="0">
+        <h2 is-upgraded>配列とTextEditingController()</h2>
+<pre><code language="language-dart" class="language-dart">class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  var todos = [];
+  var textbox = TextEditingController();
+
+  @override
+</code></pre>
+<p>一気に書きましたが、<code>todos</code>と<code>textbox</code>という変数を用意しました。<code>[]</code>が配列を表します。つまり、<code>todos</code>という変数の中身は配列だよということです。同じように<code>textbox</code>という変数には<code>TextEditingController()</code>というWidgetを入れました。<code>TextEditingController()</code>はテキストボックス内に何か書くと、文字だけでなく様々な情報が入るWidgetです。</p>
+<h2 is-upgraded>ボタンとテキストボックスを連携</h2>
+<pre><code language="language-dart" class="language-dart">child: TextFormField(
+  decoration: InputDecoration(
+    border: OutlineInputBorder(),
+    hintText: &#39;Todoを入力&#39;),
+  controller: textbox,
+),
+</code></pre>
+<p><code>TextFormField()</code>の<code>controller</code>に用意した<code>textbox</code>を持たせます。これでテキストボックスに書かれた文字などの情報が<code>textbox</code>に入っている<code>TextEditingController()</code>に入ります。</p>
+<pre><code language="language-dart" class="language-dart">trailing: ElevatedButton(
+  onPressed: () {
+    setState(() {
+      todos.add(textbox.text);
+      textbox.clear();
+    });
+  },
+  child: Text(&#39;追加&#39;)
+),
+</code></pre>
+<p>配列に要素を追加するには、<code>配列名.</code>add(追加したいもの)という書き方をします。今回は<code>todos</code>に<code>add</code>します。追加したいものは<code>textbox.text</code>になります。<code>.text</code>によって、<code>TextEditingController()</code>に入っている情報のテキスト要素を取り出しています。<br><code>textbox.clear()</code>は<code>add</code>したあとにテキストボックス内をリセットするということです。<code>add</code>したのにテキストボックス内に文字が残っていたら嫌です。</p>
+<pre><code language="language-dart" class="language-dart">todos.add(textbox.text);
+textbox.clear();
+print(todos);
+</code></pre>
+<p><code>print(todos)</code>によって、<code>todos</code>の中身を覗くことができます。consoleという手元で確認する用のパネルに表示します。</p>
+<p>テキストボックス内にテキストを入力して、追加ボタンを押したときにconsoleに文字が表示されたらOK！</p>
+<p class="image-container"><img alt="console" src="img\e37ac444b8b7d233.png"></p>
+
+
+      </google-codelab-step>
+    
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>

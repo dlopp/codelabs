@@ -266,3 +266,58 @@ trailing: ElevatedButton(
 ![manshon](img/manshon.png)
 
 Aマンションの１号室には「あああ」という文字列が入っています。コード上で「Aマンションの１号室！」と呼ぶと、展開されて「あああ」が取り出されます。この「Aマンション」にあたるのが**配列名**です。
+
+
+## 実装
+
+### 配列とTextEditingController()
+
+```dart
+class _MyHomePageState extends State<MyHomePage> {
+  var todos = [];
+  var textbox = TextEditingController();
+
+  @override
+```
+
+一気に書きましたが、`todos`と`textbox`という変数を用意しました。`[]`が配列を表します。つまり、`todos`という変数の中身は配列だよということです。同じように`textbox`という変数には`TextEditingController()`というWidgetを入れました。`TextEditingController()`はテキストボックス内に何か書くと、文字だけでなく様々な情報が入るWidgetです。
+
+### ボタンとテキストボックスを連携
+
+```dart
+child: TextFormField(
+  decoration: InputDecoration(
+    border: OutlineInputBorder(),
+    hintText: 'Todoを入力'),
+  controller: textbox,
+),
+```
+
+`TextFormField()`の`controller`に用意した`textbox`を持たせます。これでテキストボックスに書かれた文字などの情報が`textbox`に入っている`TextEditingController()`に入ります。
+
+```dart
+trailing: ElevatedButton(
+  onPressed: () {
+    setState(() {
+      todos.add(textbox.text);
+      textbox.clear();
+    });
+  },
+  child: Text('追加')
+),
+```
+
+配列に要素を追加するには、`配列名.add(追加したいもの)`という書き方をします。今回は`todos`に`add`します。追加したいものは`textbox.text`になります。`.text`によって、`TextEditingController()`に入っている情報のテキスト要素を取り出しています。  
+`textbox.clear()`は`add`したあとにテキストボックス内をリセットするということです。`add`したのにテキストボックス内に文字が残っていたら嫌です。
+
+```dart
+todos.add(textbox.text);
+textbox.clear();
+print(todos);
+```
+
+`print(todos)`によって、`todos`の中身を覗くことができます。consoleという手元で確認する用のパネルに表示します。  
+
+テキストボックス内にテキストを入力して、追加ボタンを押したときにconsoleに文字が表示されたらOK！
+
+![console](img/console.png)
