@@ -377,3 +377,48 @@ itemBuilder: (context, index) {
 今回は、`index`番目としました。`index`とは、`itemBuilder`で使われている`index`という単語です。`itemBuilder`は配列の中身を1個づつすべてチェックしていくメソッドです。1個めをチェックしているときは`index`は`0`です。2個めをチェックしているときは`index`は`1`です。このように、`index`は順番に数字が＋１されていきます。これを利用しています。
 
 ![card](img/card.png)
+
+## 再びListTile()。そしてIconButton()
+
+このままだと見づらい上に、いろいろボタンを置きたいので、`ListTile()`をまた使いましょう。（ほんと便利です）
+
+```dart
+return Card(
+  child: ListTile(
+    title: Text(todos[index])
+  )
+);
+```
+
+とりあえず、`title`に`Text()`を置きました。いい感じに余白が空いて見やすくなったと思います。  
+
+### IconButton()
+
+ToDoが完了したときの完了ボタン、ToDoを削除するときの削除ボタンをアイコンでやりたいと思います。そこで使うのが`IconButton()`Widgetです。
+
+```dart
+child: ListTile(
+  leading: IconButton(
+    icon: Icon(Icons.check_circle),
+    onPressed: () {
+      
+    }
+  ),
+  title: Text(todos[index]),
+  trailing: IconButton(
+    icon: Icon(Icons.delete_outline),
+    onPressed: () {
+      
+    }
+  ),
+)
+```
+
+Negative
+: プロパティ終わりの`,`に注意！！
+
+`ListTile()`の`leading`（左）と`trailing`（右）にアイコンを置きました。`IconButton()`の`icon`で何のアイコンを置くのか、`onPressed`で押されたときの処理を決めます。  
+
+Fluterがあらかじめ用意してくれているアイコンを用いました。よくみるようなアイコンかと思います。ちなみに、Flutterのアイコンは十分以上にたくさんあります。ありすぎて、見ているだけで楽しいです。[Flutterのアイコンはこちら](https://api.flutter.dev/flutter/material/Icons-class.html)
+
+![icon](img/icon.png)

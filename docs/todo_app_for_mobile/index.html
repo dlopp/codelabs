@@ -334,6 +334,42 @@ print(todos);
 
       </google-codelab-step>
     
+      <google-codelab-step label="再びListTile()。そしてIconButton()" duration="0">
+        <p>このままだと見づらい上に、いろいろボタンを置きたいので、<code>ListTile()</code>をまた使いましょう。（ほんと便利です）</p>
+<pre><code language="language-dart" class="language-dart">return Card(
+  child: ListTile(
+    title: Text(todos[index])
+  )
+);
+</code></pre>
+<p>とりあえず、<code>title</code>に<code>Text()</code>を置きました。いい感じに余白が空いて見やすくなったと思います。</p>
+<h2 is-upgraded>IconButton()</h2>
+<p>ToDoが完了したときの完了ボタン、ToDoを削除するときの削除ボタンをアイコンでやりたいと思います。そこで使うのが<code>IconButton()</code>Widgetです。</p>
+<pre><code language="language-dart" class="language-dart">child: ListTile(
+  leading: IconButton(
+    icon: Icon(Icons.check_circle),
+    onPressed: () {
+      
+    }
+  ),
+  title: Text(todos[index]),
+  trailing: IconButton(
+    icon: Icon(Icons.delete_outline),
+    onPressed: () {
+      
+    }
+  ),
+)
+</code></pre>
+<aside class="warning"><p>プロパティ終わりの<code>,</code>に注意！！</p>
+</aside>
+<p><code>ListTile()</code>の<code>leading</code>（左）と<code>trailing</code>（右）にアイコンを置きました。<code>IconButton()</code>の<code>icon</code>で何のアイコンを置くのか、<code>onPressed</code>で押されたときの処理を決めます。</p>
+<p>Fluterがあらかじめ用意してくれているアイコンを用いました。よくみるようなアイコンかと思います。ちなみに、Flutterのアイコンは十分以上にたくさんあります。ありすぎて、見ているだけで楽しいです。<a href="https://api.flutter.dev/flutter/material/Icons-class.html" target="_blank">Flutterのアイコンはこちら</a></p>
+<p class="image-container"><img alt="icon" src="img\f04fd8fd60a0cfd.png"></p>
+
+
+      </google-codelab-step>
+    
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
