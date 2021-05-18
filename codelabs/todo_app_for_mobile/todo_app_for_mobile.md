@@ -359,3 +359,21 @@ Positive
 : `配列名.length`で、配列の中身の要素数を扱うことができます。
 
 配列の中身の要素は`itemBuilder`の`return`の次に書かれた形で表示します。一つ一つの要素の見た目を`return`の次で決めるということです。
+
+## Card()
+
+先程の`return`の続きを作っていきましょう。非常に便利な`Card()`Widgetを使います。いい感じに影がついていて見やすいです。
+
+```dart
+itemBuilder: (context, index) {
+  return Card(
+    child: Text(todos[index])
+  );
+}
+```
+
+`Card()`の中身は`Text()`で`todos[index]`としました。配列の解説のところで、「配列名の何番目！」と呼ぶと、その値が取り出されると言いました。なので、`todos[0]`とすると`todos`の1番目が取り出され、`todos[1]`とすると`todos`の2番目が取り出されます。  
+
+今回は、`index`番目としました。`index`とは、`itemBuilder`で使われている`index`という単語です。`itemBuilder`は配列の中身を1個づつすべてチェックしていくメソッドです。1個めをチェックしているときは`index`は`0`です。2個めをチェックしているときは`index`は`1`です。このように、`index`は順番に数字が＋１されていきます。これを利用しています。
+
+![card](img/card.png)

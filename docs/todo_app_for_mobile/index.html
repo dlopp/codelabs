@@ -319,6 +319,21 @@ print(todos);
 
       </google-codelab-step>
     
+      <google-codelab-step label="Card()" duration="0">
+        <p>先程の<code>return</code>の続きを作っていきましょう。非常に便利な<code>Card()</code>Widgetを使います。いい感じに影がついていて見やすいです。</p>
+<pre><code language="language-dart" class="language-dart">itemBuilder: (context, index) {
+  return Card(
+    child: Text(todos[index])
+  );
+}
+</code></pre>
+<p><code>Card()</code>の中身は<code>Text()</code>で<code>todos[index]</code>としました。配列の解説のところで、「配列名の何番目！」と呼ぶと、その値が取り出されると言いました。なので、<code>todos[0]</code>とすると<code>todos</code>の1番目が取り出され、<code>todos[1]</code>とすると<code>todos</code>の2番目が取り出されます。</p>
+<p>今回は、<code>index</code>番目としました。<code>index</code>とは、<code>itemBuilder</code>で使われている<code>index</code>という単語です。<code>itemBuilder</code>は配列の中身を1個づつすべてチェックしていくメソッドです。1個めをチェックしているときは<code>index</code>は<code>0</code>です。2個めをチェックしているときは<code>index</code>は<code>1</code>です。このように、<code>index</code>は順番に数字が＋１されていきます。これを利用しています。</p>
+<p class="image-container"><img alt="card" src="img\bf6d63b1b77169d9.png"></p>
+
+
+      </google-codelab-step>
+    
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
