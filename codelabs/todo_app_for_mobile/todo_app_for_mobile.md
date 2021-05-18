@@ -321,3 +321,41 @@ print(todos);
 テキストボックス内にテキストを入力して、追加ボタンを押したときにconsoleに文字が表示されたらOK！
 
 ![console](img/console.png)
+
+## 配列の中身を画面に表示
+
+いよいよ追加したToDoを画面に表示して見えるようにします。どうするかというと、配列の中身を画面に表示するWidgetを用います。
+
+### Expanded()・ListView.builder()
+
+ToDoをテキストボックスの上に表示させます。そのためには、`Column()`の中の`children[]`の中に、テキストボックスの上にWidgetを配置します。
+
+Positive
+: `Column()`の`children[]`は`[]`なので、配列になっています！配列の中身を縦列に順番に表示するWidgetですね。
+
+```dart
+body: Column(
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+    Expanded(
+      child: ListView.builder(
+        itemCount: ,
+        itemBuilder: (context, index) {
+          return;
+        }
+      )
+    ),
+```
+
+`Expanded()`Widgetは便利なWidgetで、子要素を縦幅いっぱいまで自動的に広げるWidgetです。普通縦幅を自分で設定しなければダメなのですが、これは自動的に広げてくれます。  
+
+`ListView.builder()`は指定した配列やデータベースから、要素を一個づつ表示させるWidgetです。`itemCount`は要素を全部で何個表示するかです。今回は`todos`配列の中身の数だけ表示させるので、こうします。
+
+```dart
+itemCount: todos.length,
+```
+
+Positive
+: `配列名.length`で、配列の中身の要素数を扱うことができます。
+
+配列の中身の要素は`itemBuilder`の`return`の次に書かれた形で表示します。一つ一つの要素の見た目を`return`の次で決めるということです。
