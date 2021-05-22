@@ -442,3 +442,54 @@ Positive
 : チェックマークとゴミ箱の両方の`IconButton()`に書いてください！
 
 `removeAt()`はWidgetではなく、メソッドです。配列内の特定番目の要素を削除するメソッドです。`removeAt( 0 )`とすると、配列内の１番目が削除されます。今回は`index`番目です。
+
+## ダイアログ表示
+
+これでも一応動作しますが、タスク完了とタスク削除の区別がつきにくいです。なので、削除するときは「削除しますか？」というダイアログを表示させてみます。
+
+### AlertDialog()
+
+ダイアログにも種類がありますが、`AlertDialog()`を使います。Flutterでダイアログを表示させるには一旦`showDialog()`というメソッドをかます必要があります。
+
+```dart
+onPressed: () {
+  showDialog(
+    context: context,
+    builder: (_) {
+      return AlertDialog(
+
+      );
+    }
+  );
+}
+```
+
+`AlertDialog()`の中身を書いていきます。
+
+```dart
+return AlertDialog(
+  title: Text('削除しますか？'),
+  actions: [
+    TextButton(
+      child: Text('削除'),
+      onPressed: () {
+        setState(() {
+          todos.removeAt(index);
+        });
+        Navigator.pop(context);
+      },
+    ),
+    TextButton(
+      child: Text('キャンセル'),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    ),
+  ],
+);
+```
+
+`title`はダイアログのメインテキストです。`actions`は下部に表示されるボタン類を置く場所です。削除ボタンとキャンセルボタンを用意しました。つかうWidgetは`TextButton()`です。削除する場合は`onPressed`内に`removeAt(index)`で削除するメソッドを置いています。  
+`Navigator.pop(context)`というのは、画面を一つ前の状態に戻す効果があります。このハンズオンでは実装しませんが、画面遷移をしたときに前の画面に戻すときもこれを使います。これを書かない場合、ボタンを押してもずっとダイアログが表示されたままになります。
+
+![dialog](img/dialog.png)

@@ -386,6 +386,49 @@ print(todos);
 
       </google-codelab-step>
     
+      <google-codelab-step label="ダイアログ表示" duration="0">
+        <p>これでも一応動作しますが、タスク完了とタスク削除の区別がつきにくいです。なので、削除するときは「削除しますか？」というダイアログを表示させてみます。</p>
+<h2 is-upgraded>AlertDialog()</h2>
+<p>ダイアログにも種類がありますが、<code>AlertDialog()</code>を使います。Flutterでダイアログを表示させるには一旦<code>showDialog()</code>というメソッドをかます必要があります。</p>
+<pre><code language="language-dart" class="language-dart">onPressed: () {
+  showDialog(
+    context: context,
+    builder: (_) {
+      return AlertDialog(
+
+      );
+    }
+  );
+}
+</code></pre>
+<p><code>AlertDialog()</code>の中身を書いていきます。</p>
+<pre><code language="language-dart" class="language-dart">return AlertDialog(
+  title: Text(&#39;削除しますか？&#39;),
+  actions: [
+    TextButton(
+      child: Text(&#39;削除&#39;),
+      onPressed: () {
+        setState(() {
+          todos.removeAt(index);
+        });
+        Navigator.pop(context);
+      },
+    ),
+    TextButton(
+      child: Text(&#39;キャンセル&#39;),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    ),
+  ],
+);
+</code></pre>
+<p><code>title</code>はダイアログのメインテキストです。<code>actions</code>は下部に表示されるボタン類を置く場所です。削除ボタンとキャンセルボタンを用意しました。つかうWidgetは<code>TextButton()</code>です。削除する場合は<code>onPressed</code>内に<code>removeAt(index)</code>で削除するメソッドを置いています。<br><code>Navigator.pop(context)</code>というのは、画面を一つ前の状態に戻す効果があります。このハンズオンでは実装しませんが、画面遷移をしたときに前の画面に戻すときもこれを使います。これを書かない場合、ボタンを押してもずっとダイアログが表示されたままになります。</p>
+<p class="image-container"><img alt="dialog" src="img\30e7e9f5fbeff9dd.png"></p>
+
+
+      </google-codelab-step>
+    
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
