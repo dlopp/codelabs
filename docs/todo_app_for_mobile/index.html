@@ -442,13 +442,47 @@ print(todos);
 <p>テキストボックス内の状態を確認する一意の<code>key</code>というものがバリデートには必要です。<code>GlobalKey&lt;FormState&gt;()</code>という<code>key</code>を変数で用意して、それを<code>Form()</code>にセットします。</p>
 <pre><code language="language-dart" class="language-dart">var textbox = TextEditingController();
 var todos = [];
-var _formKey = GlobalKey&lt;FormState&gt;();
+var formKey = GlobalKey&lt;FormState&gt;();
 
 ListTile(
   title: Form(
-    key: _formKey,
+    key: formKey,
     child: TextFormField(
 </code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="validate 実装" duration="0">
+        <p>まず、validateの処理を書いてみましょう。</p>
+<pre><code language="language-dart" class="language-dart">child: TextFormField(
+  decoration: InputDecoration(
+      border: OutlineInputBorder(), hintText: &#39;Todoを入力&#39;),
+  controller: textbox,
+  validator: (value) {
+    if (value.isEmpty) {
+      return &#39;テキストを入力してください&#39;;
+    }
+    return null;
+  },
+),
+</code></pre>
+<p><code>if () {}</code>はそのまま「もし」という意味です。<code>()</code>中身が真なら、<code>{}</code>の中の処理をするということになります。この場合、テキストボックス内が空っぽなら、「テキストを入力してください」という文字が画面に表示されることになります。空っぽでないなら<code>null</code>で何もしないということです。</p>
+<p>次に、この処理を追加ボタンを押したときに起動させます。</p>
+<pre><code language="language-dart" class="language-dart">trailing: ElevatedButton(
+  onPressed: () {
+    setState(() {
+      if (formKey.currentState.validate()) {
+        todos.add(textbox.text);
+        textbox.clear();
+      }
+    });
+  },
+  child: Text(&#39;追加&#39;)
+)
+</code></pre>
+<p><code>formKey.currentState.validate()</code>の部分で、上で用意したvalidateの処理が実行されます。そして、問題がなければ配列に追加する処理がなされます。問題があれば、上で設定した警告文が表示されます。</p>
+<p class="image-container"><img alt="validate" src="img\714be6260719227c.png"></p>
 
 
       </google-codelab-step>

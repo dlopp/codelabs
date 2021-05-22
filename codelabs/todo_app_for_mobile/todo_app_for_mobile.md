@@ -520,3 +520,46 @@ ListTile(
     key: formKey,
     child: TextFormField(
 ```
+
+## validate 実装
+
+まず、validateの処理を書いてみましょう。
+
+```dart
+child: TextFormField(
+  decoration: InputDecoration(
+      border: OutlineInputBorder(), hintText: 'Todoを入力'),
+  controller: textbox,
+  validator: (value) {
+    if (value.isEmpty) {
+      return 'テキストを入力してください';
+    }
+    return null;
+  },
+),
+```
+
+`if () {}`はそのまま「もし」という意味です。`()`中身が真なら、`{}`の中の処理をするということになります。この場合、テキストボックス内が空っぽなら、「テキストを入力してください」という文字が画面に表示されることになります。空っぽでないなら`null`で何もしないということです。
+
+
+次に、この処理を追加ボタンを押したときに起動させます。
+
+```dart
+trailing: ElevatedButton(
+  onPressed: () {
+    setState(() {
+      if (formKey.currentState.validate()) {
+        todos.add(textbox.text);
+        textbox.clear();
+      }
+    });
+  },
+  child: Text('追加')
+)
+```
+
+`formKey.currentState.validate()`の部分で、上で用意したvalidateの処理が実行されます。そして、問題がなければ配列に追加する処理がなされます。問題があれば、上で設定した警告文が表示されます。
+
+![validate](img/validatec.png)
+
+これでこのSimple Todoアプリで必要なすべての機能を実装することができました！！
