@@ -370,6 +370,22 @@ print(todos);
 
       </google-codelab-step>
     
+      <google-codelab-step label="Iconを押したときの処理" duration="0">
+        <p><code>IconButton()</code>の<code>onPressed</code>の処理を何も書いていないので、押しても何も起こりません。タスク完了のチェックマークとゴミ箱ボタンを押したときの処理を書いてみましょう。<br> タスクが完了した時、または削除する時は配列内からその要素を消してあげれば画面に表示されなくなります。</p>
+<h2 is-upgraded>removeAt()</h2>
+<pre><code language="language-dart" class="language-dart">onPressed: () {
+  setState(() {
+    todos.removeAt(index);
+  });
+}
+</code></pre>
+<aside class="special"><p>チェックマークとゴミ箱の両方の<code>IconButton()</code>に書いてください！</p>
+</aside>
+<p><code>removeAt()</code>はWidgetではなく、メソッドです。配列内の特定番目の要素を削除するメソッドです。<code>removeAt( 0 )</code>とすると、配列内の１番目が削除されます。今回は<code>index</code>番目です。</p>
+
+
+      </google-codelab-step>
+    
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>

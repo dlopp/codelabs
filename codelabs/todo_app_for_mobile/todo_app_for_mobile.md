@@ -422,3 +422,23 @@ Negative
 Fluterがあらかじめ用意してくれているアイコンを用いました。よくみるようなアイコンかと思います。ちなみに、Flutterのアイコンは十分以上にたくさんあります。ありすぎて、見ているだけで楽しいです。[Flutterのアイコンはこちら](https://api.flutter.dev/flutter/material/Icons-class.html)
 
 ![icon](img/icon.png)
+
+## Iconを押したときの処理
+
+`IconButton()`の`onPressed`の処理を何も書いていないので、押しても何も起こりません。タスク完了のチェックマークとゴミ箱ボタンを押したときの処理を書いてみましょう。  
+タスクが完了した時、または削除する時は配列内からその要素を消してあげれば画面に表示されなくなります。
+
+### removeAt()
+
+```dart
+onPressed: () {
+  setState(() {
+    todos.removeAt(index);
+  });
+}
+```
+
+Positive
+: チェックマークとゴミ箱の両方の`IconButton()`に書いてください！
+
+`removeAt()`はWidgetではなく、メソッドです。配列内の特定番目の要素を削除するメソッドです。`removeAt( 0 )`とすると、配列内の１番目が削除されます。今回は`index`番目です。
