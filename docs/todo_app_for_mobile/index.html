@@ -429,6 +429,30 @@ print(todos);
 
       </google-codelab-step>
     
+      <google-codelab-step label="validate" duration="0">
+        <p>気づいている人もいるかも知れませんが、テキストボックスを空白の状態で追加ボタンを押すと、空テキストで配列に追加されてしまいます。このようなことを防ぐために、テキストボックスの中身が不適切の場合は警告を出すことができます。それがバリデートというものです。</p>
+<h2 is-upgraded>流れ</h2>
+<p>少し複雑なので、システムの流れを始めに説明します。</p>
+<ol type="1">
+<li>追加ボタンを押したときにバリデートが走る</li>
+<li>バリデートの結果、問題なしなら配列に追加。問題ありなら３へ。</li>
+<li>内容が間違っていると警告を出す。</li>
+</ol>
+<h2 is-upgraded>keyが必要</h2>
+<p>テキストボックス内の状態を確認する一意の<code>key</code>というものがバリデートには必要です。<code>GlobalKey&lt;FormState&gt;()</code>という<code>key</code>を変数で用意して、それを<code>Form()</code>にセットします。</p>
+<pre><code language="language-dart" class="language-dart">var textbox = TextEditingController();
+var todos = [];
+var _formKey = GlobalKey&lt;FormState&gt;();
+
+ListTile(
+  title: Form(
+    key: _formKey,
+    child: TextFormField(
+</code></pre>
+
+
+      </google-codelab-step>
+    
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
