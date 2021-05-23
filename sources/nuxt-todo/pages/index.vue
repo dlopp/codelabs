@@ -7,14 +7,8 @@
     </header>
     <section class="main">
       <ul>
-        <li class="card">
-          <p class="todo">todo1です</p>
-          <button class="done">
-            完了
-          </button>
-        </li>
-        <li class="card">
-          <p class="todo">todo2です</p>
+        <li v-for="(todo, index) in todoList" :key="index" class="card">
+          <p class="todo">{{ todo }}</p>
           <button class="done">
             完了
           </button>
@@ -30,7 +24,11 @@
 
 <script>
 export default {
-  
+  data() {
+    return {
+      todoList: ['todo1です', 'todo2です']
+    }
+  }
 }
 </script>
 
