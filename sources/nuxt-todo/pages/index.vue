@@ -30,17 +30,35 @@ export default {
       todoList: [],
     };
   },
+  mounted() {
+    this.todoList = this.getTodoList()
+  },
   methods: {
+    getTodoList() {
+      let list = localStorage.getItem('todoList')
+      if (list === null) {
+        return []
+      } else {
+        return JSON.parse(list)
+      }
+    },
     addTodo() {
       if (this.todo.length === 0) {
         alert("todoを入力してください。");
         return;
       }
-      this.todoList.push(this.todo);
+      this.todoList.push(this.todo)
+      localStorage.setItem('todoList', JSON.stringify(this.todoList))
       this.todo = "";
     },
     completeTodo(index) {
       this.todoList.splice(index, 1);
+      console.log(localStorage.length);
+      if (this.todoList.length === 0) {
+        localStorage.removeItem('todoList')
+        return;
+      }
+      localStorage.setItem('todoList', JSON.stringify(this.todoList))
     },
   },
 };
