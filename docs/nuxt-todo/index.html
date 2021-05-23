@@ -28,17 +28,16 @@
                   feedback-link="">
     
       <google-codelab-step label="概要" duration="2">
-        <p>このCodelabsでは、簡易的なTodoアプリケーションを作ることを通して、Web開発の雰囲気を体験できます。<br> その関係上特定の技術をしっかり学ぶためのものではありません。<br> 一度簡単なアプリを作ってみて、気になった部分をさらに学び、様々な技術への学びを深めていってください。 もしご不明点や間違い等あれば、こちらにIssueとして起票いただければと思います。</p>
-<p>実際に作るものはこちらです。</p>
+        <p>このCodelabsでは、簡易的なTodoアプリケーションを作ることを通して、Web開発の雰囲気を体験できます。<br> その関係上特定の技術をしっかり学ぶためのものではありません。<br> 一度簡単なアプリを作ってみて、気になった部分をさらに学び、様々な技術への学びを深めていってください。 もしご不明点や間違い等あれば、<a href="https://github.com/dlopp/codelabs/issues" target="_blank">こちら</a>にIssueとして起票いただければと思います。</p>
+<p>実際に作るものはこちらです。<br><a href="https://dlopp-nuxt-todo.netlify.app/" target="_blank">https://dlopp-nuxt-todo.netlify.app/</a></p>
 <h2 is-upgraded>対象</h2>
 <ul>
 <li>プログラミング入門者</li>
 <li>Web開発に興味がある人</li>
 </ul>
 <h2 is-upgraded>使用する技術</h2>
-<p>開発環境</p>
 <ul>
-<li><a href="https://cloud.google.com/shell?hl=ja" target="_blank">Cloud Shell | Google Cloud</a><br> フレームワーク</li>
+<li><a href="https://cloud.google.com/shell?hl=ja" target="_blank">Cloud Shell | Google Cloud</a></li>
 <li><a href="https://ja.nuxtjs.org/" target="_blank">Nuxt.js - ユニバーサル Vue.js アプリケーション</a></li>
 </ul>
 <p>次ページから実際にアプリを作っていきます！</p>
@@ -88,7 +87,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="ページを作成する" duration="2">
-        <aside class="special"><p>このページの変更は以下のURLで確認できます。困ったら見てください。</p>
+        <aside class="special"><p>このページの変更は<a href="https://github.com/dlopp/codelabs/commit/2bb5c7891572c5413638d4e544b4293cd9dab96a" target="_blank">こちら</a>で確認できます。困ったら見てください。<br></p>
 </aside>
 <p>Nuxt.jsでは、pagesフォルダ内にvueファイルを置くとページとして認識されます。<br> pagesフォルダを作って、その中に<code>index.vue</code>を置きましょう。</p>
 <pre><code language="language-bash" class="language-bash">.
@@ -117,7 +116,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="ページ構造を書く" duration="0">
-        <aside class="special"><p>このページの変更は以下のURLで確認できます。困ったら見てください。</p>
+        <aside class="special"><p>このページの変更は<a href="https://github.com/dlopp/codelabs/commit/aa9bb23a56ba2ab207370778accff2b72ee51bf1" target="_blank">こちら</a>で確認できます。困ったら見てください。</p>
 </aside>
 <p>このチャプターではページ構造を記述していきます。Nuxt.jsでは、<code>&lt;template&gt;</code>の中にHTMLっぽく書けます。</p>
 <h2 is-upgraded>HTMLとは</h2>
@@ -161,7 +160,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="スタイルを付ける" duration="0">
-        <aside class="special"><p>このページの変更は以下のURLで確認できます。困ったら見てください。</p>
+        <aside class="special"><p>このページの変更は<a href="https://github.com/dlopp/codelabs/commit/6264ac4e4951190682e79705d18ba94fd70f84a6" target="_blank">こちら</a>で確認できます。困ったら見てください。</p>
 </aside>
 <p>スタイルを付けていきましょう！今回は、CSSというものを使用します。</p>
 <h2 is-upgraded>CSSとは</h2>
@@ -281,9 +280,9 @@
 <p>JavaScriptのフレームワークの1種です。JavaScriptはブラウザで動作するプログラミング言語です。これらは、フロントエンドの開発によく用いられています。<br> JavaScriptは、下記サイトで体系的に学ぶことができます。<br> MDN reference: <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/</a><br> Vue.jは下記サイトで学ぶことができます。<br> Vue.js公式reference: <a href="https://jp.vuejs.org/v2/guide/index.html" target="_blank">https://jp.vuejs.org/v2/guide/index.html</a></p>
 <p>ということで、先ほど書いた<code>&lt;script&gt;&lt;/script&gt;</code>の中に書いていきます！</p>
 <h2 is-upgraded>仮データをscript側で保持し表示する</h2>
-<aside class="special"><p>ここでの変更は以下のURLで確認できます。困ったら見てください。</p>
+<aside class="special"><p>ここでの変更は<a href="https://github.com/dlopp/codelabs/commit/037576502b0e7f204c2043072fe37ab63585a939" target="_blank">こちら</a>で確認できます。困ったら見てください。</p>
 </aside>
-<p>今のところtodoの内容をtemplateに直書きしているので、動的に動かせるようにVue.jsで保持します。<br><code>data()</code>を使うことで保持できます。下記のように<code>index.vue</code>を書き換えてください。</p>
+<p>今のところtodoの内容をtemplateに直書きしているので、動的に動かせるようにscript側で保持します。<br><code>data()</code>を使うことで保持できます。下記のように<code>index.vue</code>を書き換えてください。</p>
 <pre><code language="language-html" class="language-html">  &lt;template&gt;
     &lt;!-- 省略 --&gt;
     &lt;section class=&#34;main&#34;&gt;
@@ -312,6 +311,8 @@
 <p><code>script</code>の<code>data()</code>内で<code>todoList</code>としてデータを保持し、<code>template</code>ではその内容を参照するように変えました。</p>
 <p>3000番ポートで下記のように表示されていればOKです。 <img src="img/ae454647a6cbed67.png"></p>
 <h2 is-upgraded>Todoを追加、削除する機能を追加する</h2>
+<aside class="special"><p>ここでの変更は<a href="https://github.com/dlopp/codelabs/commit/fc07f21b7815a4a83fb9c273df79a6d8ffb1baf2" target="_blank">こちら</a>で確認できます。困ったら見てください。</p>
+</aside>
 <p>todoを動的に動かす準備ができたので、これから機能を付けていきます。<br> Vue.jsでは、methods内に関数を書くことができます。</p>
 <p>下記のように変更して下さい。<br> ややこしくなってきたので、<code>style</code>以外のすべてを書いておきます。コピペで上書きで構いません。</p>
 <pre><code language="language-html" class="language-html">&lt;template&gt;
@@ -372,7 +373,7 @@ export default {
       </google-codelab-step>
     
       <google-codelab-step label="Todoを保存する" duration="0">
-        <aside class="special"><p>このページの変更は以下のURLで確認できます。困ったら見てください。</p>
+        <aside class="special"><p>このページの変更は<a href="https://github.com/dlopp/codelabs/commit/d03222a542adc8912421fbae3b80cae0dac14038" target="_blank">こちら</a>で確認できます。困ったら見てください。</p>
 </aside>
 <p>データベースを用意して保存したいところですが、Cloud Shellを使用している都合上厳しいので、今回はLocalStrageを使います。<br> 一番最後のページで、データベースを利用したバージョンのソースコードを載せておくので、興味のある人は読んでみてください。</p>
 <h2 is-upgraded>LocalStrageとは</h2>

@@ -8,22 +8,17 @@ Duration: 0:02:00
 このCodelabsでは、簡易的なTodoアプリケーションを作ることを通して、Web開発の雰囲気を体験できます。  
 その関係上特定の技術をしっかり学ぶためのものではありません。  
 一度簡単なアプリを作ってみて、気になった部分をさらに学び、様々な技術への学びを深めていってください。 
-もしご不明点や間違い等あれば、こちらにIssueとして起票いただければと思います。  
+もしご不明点や間違い等あれば、[こちら](https://github.com/dlopp/codelabs/issues)にIssueとして起票いただければと思います。  
 
 実際に作るものはこちらです。  
-
-
-
+[https://dlopp-nuxt-todo.netlify.app/](https://dlopp-nuxt-todo.netlify.app/)
 
 ### 対象
 - プログラミング入門者
 - Web開発に興味がある人
 
-
 ### 使用する技術
-開発環境
-- [Cloud Shell | Google Cloud](https://cloud.google.com/shell?hl=ja)  
-フレームワーク
+- [Cloud Shell | Google Cloud](https://cloud.google.com/shell?hl=ja)
 - [Nuxt.js - ユニバーサル Vue.js アプリケーション](https://ja.nuxtjs.org/)
 
 次ページから実際にアプリを作っていきます！  
@@ -100,7 +95,7 @@ package.jsonに、このような一文が入力されていればOKです。
 Duration: 0:02:00
 
 Positive
-: このページの変更は以下のURLで確認できます。困ったら見てください。
+: このページの変更は[こちら](https://github.com/dlopp/codelabs/commit/2bb5c7891572c5413638d4e544b4293cd9dab96a)で確認できます。困ったら見てください。  
 
 
 Nuxt.jsでは、pagesフォルダ内にvueファイルを置くとページとして認識されます。  
@@ -135,7 +130,7 @@ pagesフォルダを作って、その中に`index.vue`を置きましょう。
 
 ## ページ構造を書く
 Positive
-: このページの変更は以下のURLで確認できます。困ったら見てください。
+: このページの変更は[こちら](https://github.com/dlopp/codelabs/commit/aa9bb23a56ba2ab207370778accff2b72ee51bf1)で確認できます。困ったら見てください。
 
 このチャプターではページ構造を記述していきます。Nuxt.jsでは、`<template>`の中にHTMLっぽく書けます。  
 
@@ -191,7 +186,7 @@ MDN reference: [https://developer.mozilla.org/ja/docs/Web/HTML/element](https://
 
 ## スタイルを付ける
 Positive
-: このページの変更は以下のURLで確認できます。困ったら見てください。
+: このページの変更は[こちら](https://github.com/dlopp/codelabs/commit/6264ac4e4951190682e79705d18ba94fd70f84a6)で確認できます。困ったら見てください。
 
 スタイルを付けていきましょう！今回は、CSSというものを使用します。
 
@@ -328,9 +323,9 @@ Vue.js公式reference: [https://jp.vuejs.org/v2/guide/index.html](https://jp.vue
 
 ### 仮データをscript側で保持し表示する
 Positive
-: ここでの変更は以下のURLで確認できます。困ったら見てください。
+: ここでの変更は[こちら](https://github.com/dlopp/codelabs/commit/037576502b0e7f204c2043072fe37ab63585a939)で確認できます。困ったら見てください。
 
-今のところtodoの内容をtemplateに直書きしているので、動的に動かせるようにVue.jsで保持します。  
+今のところtodoの内容をtemplateに直書きしているので、動的に動かせるようにscript側で保持します。  
 `data()`を使うことで保持できます。下記のように`index.vue`を書き換えてください。  
 
 ```html
@@ -365,6 +360,10 @@ Positive
 ![](img/css.png)  
 
 ### Todoを追加、削除する機能を追加する
+
+Positive
+: ここでの変更は[こちら](https://github.com/dlopp/codelabs/commit/fc07f21b7815a4a83fb9c273df79a6d8ffb1baf2)で確認できます。困ったら見てください。
+
 todoを動的に動かす準備ができたので、これから機能を付けていきます。  
 Vue.jsでは、methods内に関数を書くことができます。
 
@@ -433,7 +432,7 @@ export default {
 
 ## Todoを保存する
 Positive
-: このページの変更は以下のURLで確認できます。困ったら見てください。
+: このページの変更は[こちら](https://github.com/dlopp/codelabs/commit/d03222a542adc8912421fbae3b80cae0dac14038)で確認できます。困ったら見てください。
 
 
 データベースを用意して保存したいところですが、Cloud Shellを使用している都合上厳しいので、今回はLocalStrageを使います。  
