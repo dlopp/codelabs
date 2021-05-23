@@ -505,6 +505,6 @@ export default {
 今回は、フロントエンドだけでTodoアプリを実装しましたが、本来はサーバーサイドの言語も使用して、データベースを使うのが普通かなと思います。  
 ということでそれのデモを用意しました。  
 こちらです  
-[https://github.com/dlopp/codelabs/tree/main/sources/todo-app-for-web](https://github.com/dlopp/codelabs/tree/main/sources/todo-app-for-web)
+[https://github.com/dlopp/codelabs/tree/main/sources/todo-app-for-web](https://github.com/dlopp/codelabs/tree/main/sources/todo-app-for-web)  
 サーバーサイドフレームワークにNestJS、データベースはMySQLを使っています。  
 興味のある人は読んでみて下さい！  
