@@ -1,0 +1,450 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Web開発の雰囲気を体験するハンズオン</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="nuxt-todo"
+                  title="Web開発の雰囲気を体験するハンズオン"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="概要" duration="2">
+        <p>このCodelabsでは、簡易的なTodoアプリケーションを作ることを通して、Web開発の雰囲気を体験できます。<br> その関係上特定の技術をしっかり学ぶためのものではありません。<br> 一度簡単なアプリを作ってみて、気になった部分をさらに学び、様々な技術への学びを深めていってください。 もしご不明点や間違い等あれば、こちらにIssueとして起票いただければと思います。</p>
+<p>実際に作るものはこちらです。</p>
+<h2 is-upgraded>対象</h2>
+<ul>
+<li>プログラミング入門者</li>
+<li>Web開発に興味がある人</li>
+</ul>
+<h2 is-upgraded>使用する技術</h2>
+<p>開発環境</p>
+<ul>
+<li><a href="https://cloud.google.com/shell?hl=ja" target="_blank">Cloud Shell | Google Cloud</a><br> フレームワーク</li>
+<li><a href="https://ja.nuxtjs.org/" target="_blank">Nuxt.js - ユニバーサル Vue.js アプリケーション</a></li>
+</ul>
+<p>次ページから実際にアプリを作っていきます！</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="プロジェクトを作成する" duration="0">
+        <p>まずは、コマンドを利用してプロジェクトを作成します。<br> Cloud Shellを利用することで、必要なプログラミング言語をインストールすることなくアプリを作り始めることができます。下記リンクにアクセスしてください。<br><a href="https://ide.cloud.google.com?hl=ja" target="_blank">https://ide.cloud.google.com?hl=ja</a></p>
+<p>こんな感じの画面になっていればOKです。 <img src="img/22ee727a7d2a9c3.png"></p>
+<h2 is-upgraded>新しいフォルダを作る</h2>
+<p>ターミナルにコマンドを打っていきます。<br> 上部メニューバーのTerminalから、New Terminalを選択して下さい。<br><img src="img/dbd61cf06f7429d0.png"></p>
+<p>画面下部にターミナルが出てくるので、下記コマンドを実行してください。<br> $は入力不要です。</p>
+<pre><code language="language-bash" class="language-bash">  # todo-appという名前のフォルダを作成
+  $ mkdir todo-app
+</code></pre>
+<p>左側の青いボタン(Open Folder)から、先ほど作成したtodo-appを選択して、開くを押してください。</p>
+<h2 is-upgraded>Nuxt.jsの環境を作る</h2>
+<p>今回は、<a href="https://www.npmjs.com/" target="_blank">npm</a> というパッケージマネージャを使って、<a href="https://www.npmjs.com/package/nuxt" target="_blank">Nuxt.jsパッケージ</a>をインストールします。</p>
+<p>下記コマンドを実行してください。</p>
+<pre><code language="language-bash" class="language-bash">  # npmを初期化するコマンド
+  $ npm init -y
+</code></pre>
+<p>package.json, package-lock.jsonが生成されたと思います。<br> package.jsonにインストールしたパッケージの情報などが記述されていきます。package-lock.jsonはとりあえずは無視して大丈夫です。<br> npmコマンドを使ってNuxt.jsをインストールします。</p>
+<pre><code language="language-bash" class="language-bash">  $ npm install nuxt
+</code></pre>
+<p>しばらくすると、Nuxt.jsがnode_modulesフォルダ内にインストールされます。<br> package.jsonに、このような一文が入力されていればOKです。</p>
+<pre><code language="language-json" class="language-json">  &#34;dependencies&#34;: {
+    &#34;nuxt&#34;: &#34;^2.15.6&#34; // インストールしたnuxtのバージョン
+  }
+</code></pre>
+<p>フォルダは以下の構造になっているはずです。</p>
+<pre><code language="language-bash" class="language-bash">.
+├─ node_modules/ # npmでインストールしたパッケージ類が入ってる
+├─ package.json/  
+└─ package-lock.json
+</code></pre>
+<h2 is-upgraded>試しに実行</h2>
+<p>まずは何もいじってないこのプロジェクトが正常に動くかどうか確認しておきましょう。下記のコマンドで実行できます。</p>
+<pre><code language="language-bash" class="language-bash">  $ nuxt
+</code></pre>
+<p>右上のwebでプレビューから、ポートを変更、3000と入力し、変更してプレビューを押してください。このようなページが表示されていればOKです。<br><img src="img/ab162368368820cb.png"></p>
+<p>これで最初の準備は整いました。うまく動かない場合は環境設定がうまくいっていない可能性がありますので、エラーメッセージなどを確認してみてください。</p>
+<p>次のページから実際にページを作っていきます！</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ページを作成する" duration="2">
+        <aside class="special"><p>このページの変更は以下のURLで確認できます。困ったら見てください。</p>
+</aside>
+<p>Nuxt.jsでは、pagesフォルダ内にvueファイルを置くとページとして認識されます。<br> pagesフォルダを作って、その中に<code>index.vue</code>を置きましょう。</p>
+<pre><code language="language-bash" class="language-bash">.
+├─ node_modules/ # npmでインストールしたパッケージ類が入ってる
+├─ pages/ 
+      └─ index.vue # ここにプログラムを書いていく。 
+├─ package.json/  
+└─ package-lock.json
+</code></pre>
+<p><code>.vue</code>ファイルでは、ページ構造を<code>&lt;template&gt;</code>内に、ページのスタイルを<code>&lt;style&gt;</code>内に、機能を<code>&lt;script&gt;</code>内に書いていきます。<br> 下記をコピペしてください。</p>
+<pre><code language="language-html" class="language-html">  &lt;template&gt;
+
+  &lt;/template&gt;
+
+  &lt;script&gt;
+    
+  &lt;/script&gt;
+
+  &lt;stye&gt;
+
+  &lt;/stye&gt;
+</code></pre>
+<p>3000番ポートにアクセスして、画面に何も表示されてなければOKです！</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ページ構造を書く" duration="0">
+        <aside class="special"><p>このページの変更は以下のURLで確認できます。困ったら見てください。</p>
+</aside>
+<p>このチャプターではページ構造を記述していきます。Nuxt.jsでは、<code>&lt;template&gt;</code>の中にHTMLっぽく書けます。</p>
+<h2 is-upgraded>HTMLとは</h2>
+<p>マークアップ言語です。マークアップとは、文書の各部分がどのような役割を持っているのかを示すということです。例えば、見出し・段落・表・リストなど。<br> HTMLでは、タグというものを使ってこれらを表現します。例えば、見出しなら<code>&lt;h1&gt;</code>表なら<code>&lt;table&gt;</code>のようなタグを使います。<br> HTMLは下記サイトで体系的に学ぶことができます。<br> MDN reference: <a href="https://developer.mozilla.org/ja/docs/Web/HTML/" target="_blank">https://developer.mozilla.org/ja/docs/Web/HTML/</a></p>
+<p>ということで、先ほど書いた<code>&lt;template&gt;&lt;/template&gt;</code>の中にHTMLを書いていきます<br> 以下のコードを書いてください。(コピペで良いです)</p>
+<pre><code language="language-html" class="language-html">  &lt;template&gt;
+    &lt;div class=&#34;wrapper&#34;&gt;
+      &lt;header class=&#34;header&#34;&gt;
+        &lt;div class=&#34;container&#34;&gt;
+          &lt;h1 class=&#34;headline&#34;&gt;Todo App for Web&lt;/h1&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;section class=&#34;main&#34;&gt;
+        &lt;ul&gt;
+          &lt;li class=&#34;card&#34;&gt;
+            &lt;p class=&#34;todo&#34;&gt;todo1です&lt;/p&gt;
+            &lt;button class=&#34;done&#34;&gt;
+              完了
+            &lt;/button&gt;
+          &lt;/li&gt;
+          &lt;li class=&#34;card&#34;&gt;
+            &lt;p class=&#34;todo&#34;&gt;todo2です&lt;/p&gt;
+            &lt;button class=&#34;done&#34;&gt;
+              完了
+            &lt;/button&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;form class=&#34;form&#34;&gt;
+          &lt;input type=&#34;text&#34; class=&#34;input&#34; /&gt;
+          &lt;button type=&#34;submit&#34; class=&#34;button&#34;&gt;Todo 登録&lt;/button&gt;
+        &lt;/form&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/template&gt;
+</code></pre>
+<p>タグの中にある、<code>class</code>というのは、そのタグを特定するために書いているもので、後でスタイルをつけるときに使います。<br> ここで使用したタグのそれぞれの意味は下記リンクで見れます。<br> MDN reference: <a href="https://developer.mozilla.org/ja/docs/Web/HTML/element" target="_blank">https://developer.mozilla.org/ja/docs/Web/HTML/element</a></p>
+<p>3000番ポートで下記のように表示されていればOKです。 <img src="img/71297cd92517a0ca.png"></p>
+<p>適切なタグをつけると、ブラウザが良い感じに要素を判断してスタイルをつけてくれます。例えば、todoリストは<code>ul</code>タグ(unordered listの略)を使用しているので、箇条書きのようになっていると思います。<br> ただ、これだけだと物足りない気がします。次のページで、スタイルをつけていきます！</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="スタイルを付ける" duration="0">
+        <aside class="special"><p>このページの変更は以下のURLで確認できます。困ったら見てください。</p>
+</aside>
+<p>スタイルを付けていきましょう！今回は、CSSというものを使用します。</p>
+<h2 is-upgraded>CSSとは</h2>
+<p>ウェブページのスタイルを指定するための言語です。CSSはHTMLと組み合わせて使用する言語です。HTMLが各要素の意味や構造を定義するのに対して、CSSではそれらをどのように装飾するかを指定します。例えば、色・サイズ・レイアウト等です。<br> CSSは下記サイトで体系的に学ぶことができます。<br> MDN reference: <a href="https://developer.mozilla.org/ja/docs/Web/CSS/" target="_blank">https://developer.mozilla.org/ja/docs/Web/CSS/</a></p>
+<p>ということで、先ほど書いた<code>&lt;stye&gt;&lt;/stye&gt;</code>の中にCSSを書いていきます<br> 以下のコードを書いてください。(コピペで良いです)</p>
+<pre><code language="language-css" class="language-css">  &lt;style&gt;
+    :root {
+      --main-color: #93c5fd;
+      --hover-color: #23c5fd;
+    }
+
+    * {
+      margin: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Todo App の Style */
+    .wrapper {
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .main {
+      margin: 10px auto;
+      max-width: 36rem;
+    }
+
+    .container {
+      max-width: 36rem;
+      margin: 0 auto;
+    }
+
+    /* headerのstyle */
+    .header {
+      height: 96px;
+      width: 100%;
+      background-color: var(--main-color);
+    }
+
+    .headline {
+      font-size: 30px;
+      line-height: 96px;
+      margin-left: 20px;
+      font-weight: 700;
+      color: white;
+    }
+
+    /* todoリストのstyle */
+    .card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 入力フォームのstyle */
+    .form {
+      display: flex;
+      padding: 0 20px;
+      position: absolute;
+      bottom: 20px;
+    }
+
+    .input {
+      border-radius: 5px;
+      font-size: 20px;
+      padding-left: 10px;
+      width: 400px;
+      margin-right: 10px;
+    }
+
+    .button {
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      background: var(--main-color);
+      color: white;
+      border: none;
+    }
+
+    .button:hover {
+      background-color: var(--hover-color);
+    }
+
+    .todo {
+      font-size: 1.5rem;
+      margin-top: 5px;
+    }
+
+    .done {
+      padding: 5px 10px;
+      font-weight: bold;
+      border-radius: 4px;
+      color: white;
+      background-color: var(--main-color);
+      border: none;
+      cursor: pointer;
+    }
+
+    .done:hover {
+      background-color: var(--hover-color);
+    }
+  &lt;/style&gt;
+</code></pre>
+<p>先ほどHTMLで書いたclassと連携させて、<code>padding</code>や<code>margin</code>で余白を指定したり(単位はピクセル)、<code>color</code>で文字の色を指定したり、<code>font-size</code>で文字の大きさを指定したりしているのが分かると思います。</p>
+<p>3000番ポートで下記のように表示されていればOKです。 <img src="img/ae454647a6cbed67.png"></p>
+<p>todoリストらしくなってきたかなと思います！ただ、文字を入力しても、完了ボタンをおしても無反応ですね。<br> 次ページで、機能を作っていきます！</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Todo機能を作る" duration="0">
+        <p>このチャプターでは、Vue.jsのスクリプトを書いて機能を作っていきます。</p>
+<h2 is-upgraded>Vue.jsとは</h2>
+<p>JavaScriptのフレームワークの1種です。JavaScriptはブラウザで動作するプログラミング言語です。これらは、フロントエンドの開発によく用いられています。<br> JavaScriptは、下記サイトで体系的に学ぶことができます。<br> MDN reference: <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/</a><br> Vue.jは下記サイトで学ぶことができます。<br> Vue.js公式reference: <a href="https://jp.vuejs.org/v2/guide/index.html" target="_blank">https://jp.vuejs.org/v2/guide/index.html</a></p>
+<p>ということで、先ほど書いた<code>&lt;script&gt;&lt;/script&gt;</code>の中に書いていきます！</p>
+<h2 is-upgraded>仮データをscript側で保持し表示する</h2>
+<aside class="special"><p>ここでの変更は以下のURLで確認できます。困ったら見てください。</p>
+</aside>
+<p>今のところtodoの内容をtemplateに直書きしているので、動的に動かせるようにVue.jsで保持します。<br><code>data()</code>を使うことで保持できます。下記のように<code>index.vue</code>を書き換えてください。</p>
+<pre><code language="language-html" class="language-html">  &lt;template&gt;
+    &lt;!-- 省略 --&gt;
+    &lt;section class=&#34;main&#34;&gt;
+      &lt;ul&gt;
+        &lt;li v-for=&#34;(todo, index) in todoList&#34; :key=&#34;index&#34; class=&#34;card&#34;&gt;
+          &lt;p class=&#34;todo&#34;&gt;&#123;&#123; todo }}&lt;/p&gt;
+          &lt;button class=&#34;done&#34;&gt;
+            完了
+          &lt;/button&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;!-- 省略 --&gt;
+
+  &lt;/template&gt;
+
+  &lt;script&gt;
+  export default {
+    data() {
+      return {
+        todoList: [&#39;todo1です&#39;, &#39;todo2です&#39;],
+      };
+    },
+  }
+  &lt;script&gt;
+</code></pre>
+<p><code>script</code>の<code>data()</code>内で<code>todoList</code>としてデータを保持し、<code>template</code>ではその内容を参照するように変えました。</p>
+<p>3000番ポートで下記のように表示されていればOKです。 <img src="img/ae454647a6cbed67.png"></p>
+<h2 is-upgraded>Todoを追加、削除する機能を追加する</h2>
+<p>todoを動的に動かす準備ができたので、これから機能を付けていきます。<br> Vue.jsでは、methods内に関数を書くことができます。</p>
+<p>下記のように変更して下さい。<br> ややこしくなってきたので、<code>style</code>以外のすべてを書いておきます。コピペで上書きで構いません。</p>
+<pre><code language="language-html" class="language-html">&lt;template&gt;
+  &lt;div class=&#34;wrapper&#34;&gt;
+    &lt;header class=&#34;header&#34;&gt;
+      &lt;div class=&#34;container&#34;&gt;
+        &lt;h1 class=&#34;headline&#34;&gt;Todo App for Web&lt;/h1&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+    &lt;section class=&#34;main&#34;&gt;
+      &lt;ul&gt;
+        &lt;li v-for=&#34;(todo, index) in todoList&#34; :key=&#34;index&#34; class=&#34;card&#34;&gt;
+          &lt;p class=&#34;todo&#34;&gt;&#123;&#123; todo }}&lt;/p&gt;
+          &lt;button class=&#34;done&#34; @click.prevent=&#34;completeTodo(index)&#34;&gt;
+            完了
+          &lt;/button&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;form @submit.prevent=&#34;addTodo&#34; class=&#34;form&#34;&gt;
+        &lt;input type=&#34;text&#34; class=&#34;input&#34; v-model=&#34;title&#34; /&gt;
+        &lt;button type=&#34;submit&#34; class=&#34;button&#34;&gt;Todo 登録&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      title: &#34;&#34;,
+      todoList: [],
+    };
+  },
+  methods: {
+    addTodo() {
+      if (this.title.length === 0) {
+        alert(&#34;todoを入力してください。&#34;);
+        return;
+      }
+      this.todoList.push(this.title);
+      this.title = &#34;&#34;;
+    },
+    completeTodo(index) {
+      this.todoList.splice(index, 1);
+    },
+  },
+};
+&lt;/script&gt;
+
+&lt;!-- 省略 --&gt;
+</code></pre>
+<p>フォームに入力された情報を<code>data()</code>内の<code>todo</code>として保持し、追加するボタンを押した際、methods内の<code>addTodo()</code>が実行され、内容がtodoListの中に追加されます。<br> 細かいですが、<code>if</code>を使って条件分岐し、todoが入力されていないとき、アラートが出るようにしました。 削除するときは、completeTodoを使って、todoList内の該当するindexを持つtodoを削除するようにしています。</p>
+<p>ポート3000番にアクセスしてみて下さい。追加や、削除ができるようになっているかと思います。<br> また、todoを入力せずに追加するボタンをおすと、アラートが出ると思います。</p>
+<p>ただ、todoを追加しても、ページをリロードすると消えてしまいます。どこかでデータを保持する必要がありそうです。<br> 次ページで、todoを保存するようにしましょう！</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Todoを保存する" duration="0">
+        <aside class="special"><p>このページの変更は以下のURLで確認できます。困ったら見てください。</p>
+</aside>
+<p>データベースを用意して保存したいところですが、Cloud Shellを使用している都合上厳しいので、今回はLocalStrageを使います。<br> 一番最後のページで、データベースを利用したバージョンのソースコードを載せておくので、興味のある人は読んでみてください。</p>
+<h2 is-upgraded>LocalStrageとは</h2>
+<p>各自のブラウザにデータを保存する仕組みです。 LocalStrageは、下記サイトで学ぶことができます。<br> MDN reference: <a href="https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage" target="_blank">https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage</a></p>
+<p>ということで、scriptを以下のように変更してください。(コピペで良いです)</p>
+<pre><code language="language-js" class="language-js">&lt;script&gt;
+export default {
+  data() {
+    return {
+      todo: &#34;&#34;,
+      todoList: [],
+    };
+  },
+  mounted() {
+    this.todoList = this.getTodoList()
+  },
+  methods: {
+    getTodoList() {
+      let list = localStorage.getItem(&#39;todoList&#39;)
+      if (list === null) {
+        return []
+      } else {
+        return JSON.parse(list)
+      }
+    },
+    addTodo() {
+      if (this.todo.length === 0) {
+        alert(&#34;todoを入力してください。&#34;);
+        return;
+      }
+      this.todoList.push(this.todo)
+      localStorage.setItem(&#39;todoList&#39;, JSON.stringify(this.todoList))
+      this.todo = &#34;&#34;;
+    },
+    completeTodo(index) {
+      this.todoList.splice(index, 1);
+      console.log(localStorage.length);
+      if (this.todoList.length === 0) {
+        localStorage.removeItem(&#39;todoList&#39;)
+        return;
+      }
+      localStorage.setItem(&#39;todoList&#39;, JSON.stringify(this.todoList))
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<p>最初にページを表示するとき<code>getTodoList()</code>を呼び出して、LocalStrageからデータを取ってくるようにしています。<code>addTodo()</code>、<code>completeTodo()</code>もLocalStrageにデータを保存するように書き直しました。</p>
+<p>リロードしても、データが保持されるようになっていたらOKです！<br> これで完成です！</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="お疲れさまでした！" duration="0">
+        <p>今回はフロントエンドの技術をつかってTodoアプリを作りました！<br> 今後プログラミングを勉強していきたいと思う方は、下記サイトが参考になるかなと思います。<br><a href="https://roadmap.sh/" target="_blank">https://roadmap.sh/</a><br> 何を勉強していけばよいかが書かれています<br> 勉強の助けになれば幸いです！</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="おまけ" duration="0">
+        <p>今回は、フロントエンドだけでTodoアプリを実装しましたが、本来はサーバーサイドの言語も使用して、データベースを使うのが普通かなと思います。<br> ということでそれのデモを用意しました。<br> サーバーサイドフレームワークにNestJS、データベースはMySQLを使っています。<br> 興味のある人は読んでみて下さい！</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
