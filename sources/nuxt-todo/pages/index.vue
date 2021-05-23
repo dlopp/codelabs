@@ -9,13 +9,13 @@
       <ul>
         <li v-for="(todo, index) in todoList" :key="index" class="card">
           <p class="todo">{{ todo }}</p>
-          <button class="done">
+          <button class="done" @click.prevent="completeTodo(index)">
             完了
           </button>
         </li>
       </ul>
-      <form class="form">
-        <input type="text" class="input" />
+      <form @submit.prevent="addTodo" class="form">
+        <input type="text" class="input" v-model="todo" />
         <button type="submit" class="button">Todo 登録</button>
       </form>
     </section>
@@ -26,10 +26,24 @@
 export default {
   data() {
     return {
-      todoList: ['todo1です', 'todo2です']
-    }
-  }
-}
+      todo: "",
+      todoList: [],
+    };
+  },
+  methods: {
+    addTodo() {
+      if (this.todo.length === 0) {
+        alert("todoを入力してください。");
+        return;
+      }
+      this.todoList.push(this.todo);
+      this.todo = "";
+    },
+    completeTodo(index) {
+      this.todoList.splice(index, 1);
+    },
+  },
+};
 </script>
 
 <style>
