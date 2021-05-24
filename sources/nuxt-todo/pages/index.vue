@@ -53,7 +53,6 @@ export default {
     },
     completeTodo(index) {
       this.todoList.splice(index, 1);
-      console.log(localStorage.length);
       if (this.todoList.length === 0) {
         localStorage.removeItem('todoList')
         return;

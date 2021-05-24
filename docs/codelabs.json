@@ -1,7 +1,7 @@
 [
   {
     "id": "nuxt-todo",
-    "color": "yellow",
+    "color": "blue",
     "title": "Web開発の雰囲気を体験するやつ",
     "description": "Nuxt.jsを使って、Todoアプリケーションを作ります。(おまけ付き)",
     "date": "2020-05-24",

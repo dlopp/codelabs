@@ -94,10 +94,6 @@ package.jsonに、このような一文が入力されていればOKです。
 ## ページを作成する
 Duration: 0:02:00
 
-Positive
-: このページの変更は[こちら](https://github.com/dlopp/codelabs/commit/2bb5c7891572c5413638d4e544b4293cd9dab96a)で確認できます。困ったら見てください。  
-
-
 Nuxt.jsでは、pagesフォルダ内にvueファイルを置くとページとして認識されます。  
 pagesフォルダを作って、その中に`index.vue`を置きましょう。 
 
@@ -427,7 +423,7 @@ export default {
 ポート3000番にアクセスしてみて下さい。追加や、削除ができるようになっているかと思います。  
 また、todoを入力せずに追加するボタンをおすと、アラートが出ると思います。  
 
-ただ、todoを追加しても、ページをリロードすると消えてしまいます。どこかでデータを保持する必要がありそうです。  
+ただ、todoを追加しても、ページをリロードすると消えてしまいます。どこかでデータを保存する必要がありそうです。  
 次ページで、todoを保存するようにしましょう！
 
 ## Todoを保存する
@@ -492,7 +488,9 @@ export default {
 最初にページを表示するとき`getTodoList()`を呼び出して、LocalStrageからデータを取ってくるようにしています。`addTodo()`、`completeTodo()`もLocalStrageにデータを保存するように書き直しました。  
 
 リロードしても、データが保持されるようになっていたらOKです！  
-これで完成です！
+これで完成です！  
+最後に全体のコードを載せておきます。  
+[https://github.com/dlopp/codelabs/blob/main/sources/nuxt-todo/pages/index.vue](https://github.com/dlopp/codelabs/blob/main/sources/nuxt-todo/pages/index.vue)
 
 ## お疲れさまでした！
 今回はフロントエンドの技術をつかってTodoアプリを作りました！  
