@@ -7,7 +7,7 @@ Duration: 0:02:00
 
 このCodelabsでは、簡易的なTodoアプリケーションを作ることを通して、Web開発の雰囲気を体験できます。  
 その関係上特定の技術をしっかり学ぶためのものではありません。  
-一度簡単なアプリを作ってみて、気になった部分をさらに学び、様々な技術への学びを深めていってください。 
+一度簡単なアプリを作ってみて、気になった部分をさらに学び、様々な技術への学びを深めていってください。  
 もしご不明点や間違い等あれば、[こちら](https://github.com/dlopp/codelabs/issues)にIssueとして起票いただければと思います。  
 
 実際に作るものはこちらです。  
@@ -16,6 +16,10 @@ Duration: 0:02:00
 ### 対象
 - プログラミング入門者
 - Web開発に興味がある人
+
+### 学べること
+- Web開発の雰囲気
+- 何から勉強すれば良いかのイメージが沸く
 
 ### 使用する技術
 - [Cloud Shell | Google Cloud](https://cloud.google.com/shell?hl=ja)
@@ -28,6 +32,9 @@ Duration: 0:02:00
 まずは、コマンドを利用してプロジェクトを作成します。  
 Cloud Shellを利用することで、必要なプログラミング言語をインストールすることなくアプリを作り始めることができます。下記リンクにアクセスしてください。  
 [https://ide.cloud.google.com?hl=ja](https://ide.cloud.google.com?hl=ja)  
+
+Negative
+: Googleアカウントでログインする必要があります。  
 
 こんな感じの画面になっていればOKです。
 ![](img/inshell.png)  
@@ -46,18 +53,18 @@ $は入力不要です。
   # todo-appという名前のフォルダを作成
   $ mkdir todo-app
 ```
-左側の青いボタン(Open Folder)から、先ほど作成したtodo-appを選択して、開くを押してください。  
+左側の青いボタン(Open Folder)から、先ほど作成したtodo-appを選択して、Openを押してください。  
 
 ### Nuxt.jsの環境を作る
 今回は、[npm](https://www.npmjs.com/) というパッケージマネージャを使って、[Nuxt.jsパッケージ](https://www.npmjs.com/package/nuxt)をインストールします。  
 
-下記コマンドを実行してください。
+ターミナルを開いて、下記コマンドを実行してください。  
+
 ```bash
   # npmを初期化するコマンド
   $ npm init -y
 ```
-package.json, package-lock.jsonが生成されたと思います。  
-package.jsonにインストールしたパッケージの情報などが記述されていきます。package-lock.jsonはとりあえずは無視して大丈夫です。  
+package.jsonが生成されたと思います。ここにはインストールしたパッケージの情報などが記述されていきます。   
 npmコマンドを使ってNuxt.jsをインストールします。
 ```bash
   $ npm install nuxt
@@ -74,17 +81,21 @@ package.jsonに、このような一文が入力されていればOKです。
 ```bash
 .
 ├─ node_modules/ # npmでインストールしたパッケージ類が入ってる
-├─ package.json/  
-└─ package-lock.json
+├─ package-lock.json  # 無視でOK
+└─ package.json 
 ```
 
 
 ### 試しに実行
-まずは何もいじってないこのプロジェクトが正常に動くかどうか確認しておきましょう。下記のコマンドで実行できます。  
+まずは何もいじってないこのプロジェクトが正常に動くかどうか確認しておきましょう。
+node_modulesにインストールされたnuxtコマンドを実行します。  
 ```bash
-  $ nuxt
+  $ ./node_modules/.bin/nuxt
 ```
-右上のwebでプレビューから、ポートを変更、3000と入力し、変更してプレビューを押してください。このようなページが表示されていればOKです。  
+![](img/terminal.png)  
+
+ターミナルに表示されているリンクにアクセスして、下記のように表示されていればOKです！  
+
 ![](img/nuxt.png)  
 
 これで最初の準備は整いました。うまく動かない場合は環境設定がうまくいっていない可能性がありますので、エラーメッセージなどを確認してみてください。
@@ -95,10 +106,21 @@ package.jsonに、このような一文が入力されていればOKです。
 Duration: 0:02:00
 
 Nuxt.jsでは、pagesフォルダ内にvueファイルを置くとページとして認識されます。  
-pagesフォルダを作って、その中に`index.vue`を置きましょう。 
+pagesフォルダを作って、その中に`index.vue`を置きましょう。  
+ターミナルで、Ctrl + Cと入力し、yと入力してサーバを切って下さい。  
+その上で、下記コマンドを実行してください。  
+```bash
+  # pagesフォルダを作成
+  $ mkdir pages
+  # pagesフォルダ内にindex.vueを作成
+  $ touch pages/index.vue
+```
+
+このような構造になっていればOKです。  
 
 ```bash
 .
+├─ .nuxt/ # 無視でOK
 ├─ node_modules/ # npmでインストールしたパッケージ類が入ってる
 ├─ pages/ 
       └─ index.vue # ここにプログラムを書いていく。 
@@ -107,11 +129,11 @@ pagesフォルダを作って、その中に`index.vue`を置きましょう。
 ```
 
 `.vue`ファイルでは、ページ構造を`<template>`内に、ページのスタイルを`<style>`内に、機能を`<script>`内に書いていきます。  
-下記をコピペしてください。
+下記をindex.vueにコピペしてください。
 
 ```html
   <template>
-
+    
   </template>
 
   <script>
@@ -122,17 +144,25 @@ pagesフォルダを作って、その中に`index.vue`を置きましょう。
 
   </stye>
 ```
-3000番ポートにアクセスして、画面に何も表示されてなければOKです！  
+
+nuxtコマンドを実行し、ページを起動します。  
+```bash
+  ./node_modules/.bin/nuxt
+```
+
+表示されたURLにアクセスし、画面に何も表示されてなければOKです！  
 
 ## ページ構造を書く
 Positive
 : このページの変更は[こちら](https://github.com/dlopp/codelabs/commit/aa9bb23a56ba2ab207370778accff2b72ee51bf1)で確認できます。困ったら見てください。
 
+これ以降、コードを書いていきます。複雑なことをいろいろしますが、途中で詰まっても次のチャプターで復帰できるように構成しているので、よくわからなければどんどん進んでください。  
+
 このチャプターではページ構造を記述していきます。Nuxt.jsでは、`<template>`の中にHTMLっぽく書けます。  
 
 ### HTMLとは
 マークアップ言語です。マークアップとは、文書の各部分がどのような役割を持っているのかを示すということです。例えば、見出し・段落・表・リストなど。  
-HTMLでは、タグというものを使ってこれらを表現します。例えば、見出しなら`<h1>`表なら`<table>`のようなタグを使います。  
+HTMLでは、タグというものを使ってこれらを表現します。例えば、リストなら`<li>`表なら`<table>`のようなタグを使います。  
 HTMLは下記サイトで体系的に学ぶことができます。  
 MDN reference: [https://developer.mozilla.org/ja/docs/Web/HTML/](https://developer.mozilla.org/ja/docs/Web/HTML/)
 
@@ -173,7 +203,7 @@ MDN reference: [https://developer.mozilla.org/ja/docs/Web/HTML/](https://develop
 ここで使用したタグのそれぞれの意味は下記リンクで見れます。    
 MDN reference: [https://developer.mozilla.org/ja/docs/Web/HTML/element](https://developer.mozilla.org/ja/docs/Web/HTML/element) 
 
-3000番ポートで下記のように表示されていればOKです。
+さっきのページをリロードして、下記のように表示されていればOKです。
 ![](img/html.png)  
 
 適切なタグをつけると、ブラウザが良い感じに要素を判断してスタイルをつけてくれます。例えば、todoリストは`ul`タグ(unordered listの略)を使用しているので、箇条書きのようになっていると思います。  
@@ -184,10 +214,10 @@ MDN reference: [https://developer.mozilla.org/ja/docs/Web/HTML/element](https://
 Positive
 : このページの変更は[こちら](https://github.com/dlopp/codelabs/commit/6264ac4e4951190682e79705d18ba94fd70f84a6)で確認できます。困ったら見てください。
 
-スタイルを付けていきましょう！今回は、CSSというものを使用します。
+スタイルを付けていきましょう！今回は、CSSという言語を使用します。
 
 ### CSSとは
-ウェブページのスタイルを指定するための言語です。CSSはHTMLと組み合わせて使用する言語です。HTMLが各要素の意味や構造を定義するのに対して、CSSではそれらをどのように装飾するかを指定します。例えば、色・サイズ・レイアウト等です。  
+ウェブページのスタイルを指定するための言語です。CSSはHTMLと組み合わせて使用します。HTMLが各要素の意味や構造を定義するのに対して、CSSではそれらをどのように装飾するかを指定します。例えば、色・サイズ・レイアウト等です。  
 CSSは下記サイトで体系的に学ぶことができます。  
 MDN reference: [https://developer.mozilla.org/ja/docs/Web/CSS/](https://developer.mozilla.org/ja/docs/Web/CSS/)  
 
@@ -296,12 +326,14 @@ MDN reference: [https://developer.mozilla.org/ja/docs/Web/CSS/](https://develope
     }
   </style>
 ```
-先ほどHTMLで書いたclassと連携させて、`padding`や`margin`で余白を指定したり(単位はピクセル)、`color`で文字の色を指定したり、`font-size`で文字の大きさを指定したりしているのが分かると思います。   
 
-3000番ポートで下記のように表示されていればOKです。
+ページをリロードして下記のように表示されていればOKです。
 ![](img/css.png)  
 
-todoリストらしくなってきたかなと思います！ただ、文字を入力しても、完了ボタンをおしても無反応ですね。  
+先ほどHTMLで書いたclassと連携させて、`padding`や`margin`で余白を指定したり(単位はピクセル)、`color`で文字の色を指定したり、`font-size`で文字の大きさを指定したりしているのが分かると思います。   
+colorは、カラーコードで表現されています。一番上の:rootの中をお好きなカラーコードに書き換えると、またイメージが違ったtodoアプリになると思います。  
+
+さっきと比べてtodoリストらしくなってきたかなと思います！ただ、文字を入力しても、完了ボタンをおしても無反応ですね。  
 次ページで、機能を作っていきます！
 
 ## Todo機能を作る  
@@ -323,21 +355,31 @@ Positive
 
 今のところtodoの内容をtemplateに直書きしているので、動的に動かせるようにscript側で保持します。  
 `data()`を使うことで保持できます。下記のように`index.vue`を書き換えてください。  
+`template`は、ulタグの中身だけ書き換えています。  
 
 ```html
   <template>
-    <!-- 省略 -->
-    <section class="main">
-      <ul>
-        <li v-for="(todo, index) in todoList" :key="index" class="card">
-          <p class="todo">{{ todo }}</p>
-          <button class="done">
-            完了
-          </button>
-        </li>
-      </ul>
-    <!-- 省略 -->
-
+    <div class="wrapper">
+      <header class="header">
+        <div class="container">
+          <h1 class="headline">Todo App for Web</h1>
+        </div>
+      </header>
+      <section class="main">
+        <ul>
+          <li v-for="(todo, index) in todoList" :key="index" class="card">
+            <p class="todo">{{ todo }}</p>
+            <button class="done">
+              完了
+            </button>
+          </li>
+        </ul>
+        <form class="form">
+          <input type="text" class="input" />
+          <button type="submit" class="button">Todo 登録</button>
+        </form>
+      </section>
+    </div>
   </template>
 
   <script>
@@ -350,9 +392,11 @@ Positive
   }
   <script>
 ```
-`script`の`data()`内で`todoList`としてデータを保持し、`template`ではその内容を参照するように変えました。  
 
-3000番ポートで下記のように表示されていればOKです。
+`script`の`data()`内で`todoList`としてデータを保持し、`template`ではその内容を参照するように変えました。  
+todoListの中身を変えてみると、表示も変わることが分かると思います。  
+
+さっきのページをリロードして、下記のように表示されていればOKです。
 ![](img/css.png)  
 
 ### Todoを追加、削除する機能を追加する
@@ -383,7 +427,7 @@ Vue.jsでは、methods内に関数を書くことができます。
         </li>
       </ul>
       <form @submit.prevent="addTodo" class="form">
-        <input type="text" class="input" v-model="title" />
+        <input type="text" class="input" v-model="todo" />
         <button type="submit" class="button">Todo 登録</button>
       </form>
     </section>
@@ -394,18 +438,18 @@ Vue.jsでは、methods内に関数を書くことができます。
 export default {
   data() {
     return {
-      title: "",
+      todo: "",
       todoList: [],
     };
   },
   methods: {
     addTodo() {
-      if (this.title.length === 0) {
+      if (this.todo.length === 0) {
         alert("todoを入力してください。");
         return;
       }
-      this.todoList.push(this.title);
-      this.title = "";
+      this.todoList.push(this.todo);
+      this.todo = "";
     },
     completeTodo(index) {
       this.todoList.splice(index, 1);
@@ -420,7 +464,7 @@ export default {
 細かいですが、`if`を使って条件分岐し、todoが入力されていないとき、アラートが出るようにしました。
 削除するときは、completeTodoを使って、todoList内の該当するindexを持つtodoを削除するようにしています。  
 
-ポート3000番にアクセスしてみて下さい。追加や、削除ができるようになっているかと思います。  
+さっきのページをリロードしてみて下さい。追加や、削除ができるようになっているかと思います。  
 また、todoを入力せずに追加するボタンをおすと、アラートが出ると思います。  
 
 ただ、todoを追加しても、ページをリロードすると消えてしまいます。どこかでデータを保存する必要がありそうです。  
@@ -474,7 +518,6 @@ export default {
     },
     completeTodo(index) {
       this.todoList.splice(index, 1);
-      console.log(localStorage.length);
       if (this.todoList.length === 0) {
         localStorage.removeItem('todoList')
         return;
@@ -485,7 +528,7 @@ export default {
 };
 </script>
 ```
-最初にページを表示するとき`getTodoList()`を呼び出して、LocalStrageからデータを取ってくるようにしています。`addTodo()`、`completeTodo()`もLocalStrageにデータを保存するように書き直しました。  
+最初にページを表示するとき(`mounted`時)`getTodoList()`を呼び出して、LocalStrageからデータを取ってくるようにしています。`addTodo()`、`completeTodo()`もLocalStrageにデータを保存するように書き直しました。  
 
 リロードしても、データが保持されるようになっていたらOKです！  
 これで完成です！  
@@ -497,7 +540,8 @@ export default {
 今後プログラミングを勉強していきたいと思う方は、下記サイトが参考になるかなと思います。  
 [https://roadmap.sh/](https://roadmap.sh/)  
 何を勉強していけばよいかが書かれています  
-勉強の助けになれば幸いです！  
+
+このCodelabsが勉強の助けになれば幸いです！  
 
 ## おまけ
 今回は、フロントエンドだけでTodoアプリを実装しましたが、本来はサーバーサイドの言語も使用して、データベースを使うのが普通かなと思います。  
