@@ -51,8 +51,6 @@
 <li>一つのプロジェクトファイルで Android、iOS、Web、Windows、MacOS、Linux アプリを作成可能</li>
 <li>めっちゃ簡単</li>
 </ul>
-<p>このツールを利用して簡単なToDoアプリを作ります。以下が完成モデルです。</p>
-<p class="image-container"><img alt="complete" src="img\e4137dcca1ee85d.gif"></p>
 
 
       </google-codelab-step>
@@ -111,6 +109,32 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
   }
 }
 </code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="完成モデル" duration="0">
+        <p>完成モデルを先にGIF画像で紹介します。</p>
+<p class="image-container"><img alt="conplete" src="img\e4137dcca1ee85d.gif"></p>
+<h2 is-upgraded>UIと機能</h2>
+<p>完成モデルを見て、必要そうなUIと機能を切り分けます。</p>
+<h3 is-upgraded>UI</h3>
+<ul>
+<li>画面上のバー</li>
+<li>追加したToDoを描画する領域</li>
+<li>ToDoの中身を表示するカード</li>
+<li>画面下のテキストボックスと追加ボタン</li>
+</ul>
+<h3 is-upgraded>機能</h3>
+<ul>
+<li>テキストボックスに書かれた内容を、ボタンが押されたときに追加する</li>
+<li>ToDoを描画する仕組み</li>
+<li>Doneボタンを押したときにToDo削除</li>
+<li>削除ボタンを押したときにダイアログ表示</li>
+<li>削除ボタンを押したときにToDo削除</li>
+<li>空テキストのときに追加できないようにする</li>
+</ul>
+<p>だいたいアプリケーションを作るときは、UIから作っていくのでそれにならいます。次からUIを作っていきます。</p>
 
 
       </google-codelab-step>
