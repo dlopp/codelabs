@@ -12,11 +12,11 @@
   {
     "id": "todo_app_for_mobile",
     "color": "blue",
-    "title": "モバイル用のToDo",
+    "title": "ハンズオン 2021/05/26",
     "image": "画像",
     "description": "Flutterを用いた簡単なToDoアプリ",
-    "date": "2021-04-23",
-    "author": "Yuto Ueki",
-    "time": "10"
+    "date": "2021-05-23",
+    "author": "@yuto14prog",
+    "time": "60"
   }
 ]
