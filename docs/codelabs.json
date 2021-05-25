@@ -2,12 +2,11 @@
   {
     "id": "nuxt-todo",
     "color": "blue",
-    "title": "タイトル",
-    "image": "画像",
-    "description": "説明文",
-    "date": "2021-04-23",
-    "author": "Daiki Maekawa",
-    "time": "10"
+    "title": "Web開発の雰囲気を体験するやつ",
+    "description": "Nuxt.jsを使って、Todoアプリケーションを作ります。(おまけ付き)",
+    "date": "2020-05-24",
+    "author": "@Daaiki, @ffjlabo",
+    "time": "60"
   },
   {
     "id": "todo_app_for_mobile",
