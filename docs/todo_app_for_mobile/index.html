@@ -1,0 +1,60 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Flutter を用いた簡単な ToDo アプリを作ろう</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="todo_app_for_mobile"
+                  title="Flutter を用いた簡単な ToDo アプリを作ろう"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Flutter とは" duration="0">
+        <p> Duration: 0:02:00  <img src="img\c955c81ba85e5e25.png">  <strong>概要  </strong></p>
+<ul>
+<li>Google が開発しているアプリの作成環境 </li>
+<li>2018 年 12 月 4 日に発表 </li>
+<li>一つのプロジェクトファイルで Android、iOS、Web、Windows、MacOS、Linux アプリを作成可能 普通はそれぞれの OS に合わせて別々のプロジェクトファイルを作る必要がある </li>
+<li>めっちゃ簡単  このツールを利用して簡単なアプリを作ります。    利用する環境    Duration: 0:04:00    <h3 is-upgraded>ツール </h3>
+   Web 上で Flutter を動かせる<a href="https://dartpad.dev/?" target="_blank">DartPad</a>を利用します。  各自の PC に Flutter の開発環境を構築してもいいですが...  </li>
+<li>大量のファイルをダウンロードする必要がある </li>
+<li>環境変数の設定など、様々な設定をする必要がある </li>
+<li>筆者のそこそこスペックの PC と光回線を使っても 30 分くらいかかる  ということで、Web 上で動く<a href="https://dartpad.dev/?" target="_blank">DartPad</a>を利用したほうが楽ちんなのです。    <h3 is-upgraded>最初に </h3>
+  </li>
+</ul>
+<ol type="1">
+<li>Null Safety を解除する 下のバーにボタンがあるので解除してください （Null の扱いを記述するのがややこしいのと、今は必要ない知識だからです） </li>
+<li>基礎になるコードをコピー 以下のコードをコピーしてください。  <code>Dart<br>import &#39;package:flutter/material.dart&#39;;<br><br>void main() {<br>runApp(MyApp());<br>}<br><br>class MyApp extends StatelessWidget {<br>@override<br>Widget build(BuildContext context) {<br>return MaterialApp(<br>  debugShowCheckedModeBanner: false,<br>  theme: ThemeData(primarySwatch: Colors.blue),<br>  home: MyHomePage(),<br>);<br>}<br>}<br><br>class MyHomePage extends StatefulWidget {<br>@override<br>_MyHomePageState createState() =&gt; _MyHomePageState();<br>}<br><br>class _MyHomePageState extends State&lt;MyHomePage&gt; {<br>@override<br>Widget build(BuildContext context) {<br>return Scaffold();<br>}<br>}<br></code></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

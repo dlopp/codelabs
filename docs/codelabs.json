@@ -2,10 +2,30 @@
   {
     "id": "nuxt-todo",
     "color": "blue",
+<<<<<<< HEAD
     "title": "Web開発の雰囲気を体験するやつ",
     "description": "Nuxt.jsを使って、Todoアプリケーションを作ります。(おまけ付き)",
     "date": "2020-05-24",
     "author": "@Daaiki, @ffjlabo",
     "time": "60"
  }
+=======
+    "title": "タイトル",
+    "image": "画像",
+    "description": "説明文",
+    "date": "2021-04-23",
+    "author": "Daiki Maekawa",
+    "time": "10"
+  },
+  {
+    "id": "todo_app_for_mobile",
+    "color": "blue",
+    "title": "モバイル用のToDo",
+    "image": "画像",
+    "description": "Flutterを用いた簡単なToDoアプリ",
+    "date": "2021-04-23",
+    "author": "Yuto Ueki",
+    "time": "10"
+  }
+>>>>>>> 5f43805 (add: とりあえずちょっと書いた)
 ]
