@@ -2,14 +2,6 @@
   {
     "id": "nuxt-todo",
     "color": "blue",
-<<<<<<< HEAD
-    "title": "Web開発の雰囲気を体験するやつ",
-    "description": "Nuxt.jsを使って、Todoアプリケーションを作ります。(おまけ付き)",
-    "date": "2020-05-24",
-    "author": "@Daaiki, @ffjlabo",
-    "time": "60"
- }
-=======
     "title": "タイトル",
     "image": "画像",
     "description": "説明文",
@@ -27,5 +19,4 @@
     "author": "Yuto Ueki",
     "time": "10"
   }
->>>>>>> 5f43805 (add: とりあえずちょっと書いた)
 ]
