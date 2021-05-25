@@ -1,4 +1,4 @@
-author: Yuto Ueki
+author: @yuto14prog
 summary: Flutter の簡単な ToDo アプリ
 id: todo_app_for_mobile
 categories: codelab,markdown
@@ -6,6 +6,18 @@ environments: Web
 status: Published
 
 # Flutter を用いた簡単な ToDo アプリを作ろう
+
+## はじめに
+
+この資料では、Flutterを用いてシンプルなToDoアプリを作ります。プログラミング初心者でも理解しやすいように作ってみました。Flutterのアプリ作りの雰囲気がわかると思います。
+
+### 対象
+- プログラミング入門者
+
+### 使用技術・サービス
+- Flutter 2.2.0
+- DartPad
+
 
 ## Flutter とは
 Duration: 0:02:00
