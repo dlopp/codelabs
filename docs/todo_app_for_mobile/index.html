@@ -1,0 +1,551 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Flutter を用いた簡単な ToDo アプリを作ろう</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="todo_app_for_mobile"
+                  title="Flutter を用いた簡単な ToDo アプリを作ろう"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="はじめに" duration="0">
+        <p>この資料では、Flutterを用いてシンプルなToDoアプリを作ります。プログラミング初心者でも理解しやすいように作ってみました。Flutterのアプリ作りの雰囲気がわかると思います。</p>
+<h2 is-upgraded>対象</h2>
+<ul>
+<li>プログラミング入門者</li>
+</ul>
+<h2 is-upgraded>使用技術・サービス</h2>
+<ul>
+<li>Flutter 2.2.0</li>
+<li>DartPad</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Flutter とは" duration="2">
+        <p class="image-container"><img alt="flutter" src="img\c955c81ba85e5e25.png"></p>
+<h2 is-upgraded>概要</h2>
+<ul>
+<li>Google が開発しているアプリの作成環境</li>
+<li>2018 年 12 月 4 日に発表</li>
+<li>一つのプロジェクトファイルで Android、iOS、Web、Windows、MacOS、Linux アプリを作成可能</li>
+<li>めっちゃ簡単</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="利用する環境" duration="4">
+        <h2 is-upgraded>ツール</h2>
+<aside class="special"><p>Web 上で Flutter を動かせる <a href="https://dartpad.dev/?" target="_blank">DartPad</a>を利用します。</p>
+</aside>
+<p>各自の PC に Flutter の開発環境を構築してもいいですが...</p>
+<ul>
+<li>大量のファイルをダウンロードする必要がある</li>
+<li>環境変数の設定など、様々な設定をする必要がある</li>
+<li>筆者のそこそこスペックの PC と光回線を使っても 30 分くらいかかる</li>
+</ul>
+<p>ということで、Web 上で動く<a href="https://dartpad.dev/?" target="_blank">DartPad</a>を利用したほうが楽ちんなのです。</p>
+<h2 is-upgraded>最初に</h2>
+<ol type="1">
+<li><strong>Null Safety を解除する  </strong><ul>
+<li>下のバーにボタンがあるので解除してください</li>
+<li>Null の扱いを記述するのがややこしいのと、今は必要ない知識だからです</li>
+</ul>
+</li>
+<li><strong>基礎になるコードをコピー  </strong><ul>
+<li>以下のコードをコピーしてください。</li>
+</ul>
+</li>
+</ol>
+<aside class="special"><p>下記のコードは、Flutterプロジェクトファイルを作成したときに勝手に作られるサンプルコードに基づいています。お決まりの文言といった感じです。</p>
+</aside>
+<pre><code language="language-dart" class="language-dart">import &#39;package:flutter/material.dart&#39;;
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() =&gt; _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="完成モデル" duration="0">
+        <p>完成モデルを先にGIF画像で紹介します。</p>
+<p class="image-container"><img alt="conplete" src="img\e4137dcca1ee85d.gif"></p>
+<h2 is-upgraded>UIと機能</h2>
+<p>完成モデルを見て、必要そうなUIと機能を切り分けます。</p>
+<h3 is-upgraded>UI</h3>
+<ul>
+<li>画面上のバー</li>
+<li>追加したToDoを描画する領域</li>
+<li>ToDoの中身を表示するカード</li>
+<li>画面下のテキストボックスと追加ボタン</li>
+</ul>
+<h3 is-upgraded>機能</h3>
+<ul>
+<li>テキストボックスに書かれた内容を、ボタンが押されたときに追加する</li>
+<li>ToDoを描画する仕組み</li>
+<li>Doneボタンを押したときにToDo削除</li>
+<li>削除ボタンを押したときにダイアログ表示</li>
+<li>削除ボタンを押したときにToDo削除</li>
+<li>空テキストのときに追加できないようにする</li>
+</ul>
+<p>だいたいアプリケーションを作るときは、UIから作っていくのでそれにならいます。次からUIを作っていきます。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="UIを作るには" duration="4">
+        <h2 is-upgraded>UI作りの考え方</h2>
+<p>Flutter の場合、Widgetと呼ばれるUIパーツを組み合わせて画面を作っていきます。</p>
+<aside class="special"><p><a href="https://qiita.com/matsukatsu/items/e289e30231fffb1e4502" target="_blank">Flutter:Widget一覧</a>を見てみると、たくさんあるのがわかります。</p>
+</aside>
+<h2 is-upgraded>デザインの種類</h2>
+<p>デザインにはたくさんの種類があります。モバイルアプリでは以下の２つが有名です。結局AndroidっぽいかiOSっぽいかになります。</p>
+<ul>
+<li>マテリアル・デザイン  <ul>
+<li>Googleが推しているデザイン。Flutterはこれです。<br><img alt="material" src="img\44637841783beeaa.png"></li>
+</ul>
+</li>
+<li>クパチーノ・デザイン  <ul>
+<li>Appleが推しているデザイン。Apple本社がクパチーノにあります。<br><img style="width: 250.00px" src="img\a07b7a5b5c9e39f8.png"></li>
+</ul>
+</li>
+</ul>
+<h2 is-upgraded>Runしてみる</h2>
+<p>基礎になるコードを貼り付けたらRunボタンを押してみてください。<br> 真っ白の画面が表示されるはずです。ここから画面を作っていきます。 <img alt="firstRun" src="img\a2ac23c95c667415.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Scaffold()" duration="0">
+        <p>この白い画面は<code>Scaffold()</code>Widgetが作り出しています。<br><code>Scaffold()</code>Widgetはすべての土台となるWidgetです。</p>
+<p><code>Scaffold()</code>Widgetはたくさんのプロパティを持っていますが、今回使うのは<code>appBar</code>と<code>body</code>です。<code>appBar</code>になにかWidgetを持たせるとそこに表示されますし、<code>body</code>も同じです。２つの領域が作られるような感じです。</p>
+<p class="image-container"><img alt="scaffold" src="img\1f812b00a7cd9251.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="AppBar()・Text()" duration="0">
+        <p><code>appBar</code>に<code>AppBar()</code>Widgetを持たせましょう。これで画面上部にバーが表示されます。</p>
+<pre><code language="language-dart" class="language-dart">return Scaffold(
+      appBar: AppBar(
+        title: Text(&#39;Simple ToDo&#39;),
+      ),
+    );
+</code></pre>
+<p><code>AppBar()</code>Widgetには<code>title</code>プロパティがあり、そこに<code>Text()</code>Widgetを置いています。<code>AppBar()</code>Widgetには<code>title</code>という領域があるということです。<br><code>Text()</code>Widgetの<code>()</code>の中に<code>&#39;&#39;</code>付きで文字を置くと、その文字が画面上に表示されます。</p>
+<p class="image-container"><img alt="appbar" src="img\a29aa3a531ffd5db.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Column()" duration="0">
+        <p>次に下のテキストボックスを作りたいのですが、下の画像のように、ToDo要素とテキストボックスが縦に並んでいます。Flutterの場合、要素を縦に並べるWidgetとして、<code>Column()</code>Widgetがあります。</p>
+<p class="image-container"><img alt="column" src="img\3a6da68c9c4a74e3.png"></p>
+<p><code>Column()</code>Widgetを設置します。<code>Scaffold()</code>Widgetの<code>body</code>領域に置きます。</p>
+<pre><code language="language-dart" class="language-dart">return Scaffold(
+      appBar: AppBar(
+        title: Text(&#39;Simple ToDo&#39;),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          
+        ],
+      ),
+    );
+</code></pre>
+<p><code>mainAxisAlignment: MainAxisAlignment.start,</code>とは、要素をどういう感じに並べるかの設定です。この場合、上から単純に並べるものです。他には、要素を等間隔に並べたり、中央に集中させたりできます。<br><code>children: [],</code>の中に並べたい要素を列挙していきます。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ListTile()・Form()・TextFormField()" duration="0">
+        <p>下記のコードを書きましょう。</p>
+<pre><code language="language-dart" class="language-dart">children: [
+          ListTile(
+            title: Form(
+              child: TextFormField(
+              ),
+            ),
+          ),
+        ],
+</code></pre>
+<h2 is-upgraded>ListTile()</h2>
+<p class="image-container"><img alt="listTile" src="img\e4537fba16cf0dbc.png"></p>
+<p><code>ListTile()</code>Widgetも画面を分割するWidgetです。</p>
+<aside class="special"><p>ちなみに、<code>title</code>の左に<code>leading</code>という領域もあります。あとで使います。</p>
+</aside>
+<h2 is-upgraded>Form()・TextFormField()</h2>
+<p><code>Form()</code>Widgetは<code>TextFormField()</code>Widgetを使うための前提Widgetです。<code>TextFormField()</code>Widgetが実際に画面に表示されるテキストボックスです。</p>
+<p class="image-container"><img alt="textFormField" src="img\ab1efd045338a1e0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="InputDecoration()・OutlineInputBorder()・ElevatedButton()" duration="0">
+        <h2 is-upgraded>InputDecoration()・OutlineInputBorder()</h2>
+<p>テクストボックスは見た目や情報を変えることができます。<br> 下記のようなWidgetを置いてみましょう。</p>
+<pre><code language="language-dart" class="language-dart">children: [
+          ListTile(
+            title: Form(
+              child: TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), hintText: &#39;Todoを入力&#39;),
+              ),
+            ),
+          ),
+        ],
+</code></pre>
+<p><code>TextFormField()</code>の<code>decoration</code>プロパティに<code>InputDecoration()</code>Widgetを置くと装飾ができるようになります。<br><code>border</code>プロパティに<code>OutlineInputBorder()</code>Widgetを置くと、テクストボックスが縁取られたデザインになります。<br><code>hintText</code>プロパティはテキストボックス内に何を書くべきかのヒント文章を表示できます。</p>
+<p class="image-container"><img alt="decoration" src="img\808794405945f1a0.png"></p>
+<h2 is-upgraded>ElevatedButton()</h2>
+<p>テキストボックスの右にボタンを置きましょう。<br><code>ListTile()</code>Widgetの<code>trailing</code>プロパティにボタンのWidgetを置けば、テクストボックスの右にボタンを置けそうです。</p>
+<pre><code language="language-dart" class="language-dart">trailing: ElevatedButton(
+      onPressed: () {
+      },
+      child: Text(&#39;追加&#39;)
+),
+</code></pre>
+<p>ボタンにはいくつか種類がありますが、<code>ElevatedButton()</code>が見やすいと思います。<br><code>child</code>プロパティに<code>Text()</code>Widgetでボタン内に文字を表示できます。<br><code>onPressed</code>プロパティはボタンが押されたときにどんな処理をするのかを記述します。</p>
+<p class="image-container"><img alt="button" src="img\20fa819d5a880f52.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ボタンが押されたときの処理" duration="0">
+        <p>さあ、ここまで画面にUI要素をただ置いていく作業でした。ここからプログラミングらしいことをしてみましょう。</p>
+<h2 is-upgraded>実装する機能</h2>
+<p>以下の機能を実装します</p>
+<ul>
+<li>テキストボックス内に書かれた文字を配列に格納</li>
+</ul>
+<h2 is-upgraded>考え方</h2>
+<p>実装する機能を具体的に言葉で説明すると、<br><strong>「ボタンが押されたときに、テキストボックス内に書かれた文字を認識して、どこかに保存する」</strong>です。つまり、</p>
+<ul>
+<li>現状だとボタンとテキストボックスは赤の他人状態です。何も関係性はありません。ボタンを押すとテキストボックス内を参照させる必要があります。</li>
+<li>「どこか」に当てはまる場所は、実際のアプリであればサーバーにあたります。様々なデータを保存しておく場所です。ただし、ちょっと大変なので今回は<strong>配列</strong>に保存してみましょう。</li>
+</ul>
+<h2 is-upgraded>配列とは</h2>
+<ul>
+<li>配列の前に、変数という概念を知りましょう。変数とは、ずばり<strong>「箱」</strong>です。文字列、数字、命令など、なんでも入ります。使い方は、<br></li>
+</ul>
+<ol type="1">
+<li>箱を用意（名前をつける）して、なにか入れる</li>
+<li>箱の名前をコード上に書く これだけです。使いたいときにはこの名前をコード上に書くと、コンピューターが箱の中身を展開して使ってくれます。</li>
+</ol>
+<p class="image-container"><img alt="hensuu" src="img\323ae567e72af4cf.png"></p>
+<ul>
+<li>次に配列とは、<strong>「箱の中に仕切りがついている箱」</strong>です。イメージはマンションに近いと思います。</li>
+</ul>
+<p class="image-container"><img alt="manshon" src="img\b6c6f04cae17308b.png"></p>
+<p>Aマンションの１号室には「あああ」という文字列が入っています。コード上で「Aマンションの１号室！」と呼ぶと、展開されて「あああ」が取り出されます。この「Aマンション」にあたるのが<strong>配列名</strong>です。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="実装" duration="0">
+        <h2 is-upgraded>配列とTextEditingController()</h2>
+<pre><code language="language-dart" class="language-dart">class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  var todos = [];
+  var textbox = TextEditingController();
+
+  @override
+</code></pre>
+<p>一気に書きましたが、<code>todos</code>と<code>textbox</code>という変数を用意しました。<code>[]</code>が配列を表します。つまり、<code>todos</code>という変数の中身は配列だよということです。同じように<code>textbox</code>という変数には<code>TextEditingController()</code>というWidgetを入れました。<code>TextEditingController()</code>はテキストボックス内に何か書くと、文字だけでなく様々な情報が入るWidgetです。</p>
+<h2 is-upgraded>ボタンとテキストボックスを連携</h2>
+<pre><code language="language-dart" class="language-dart">child: TextFormField(
+  decoration: InputDecoration(
+    border: OutlineInputBorder(),
+    hintText: &#39;Todoを入力&#39;),
+  controller: textbox,
+),
+</code></pre>
+<p><code>TextFormField()</code>の<code>controller</code>に用意した<code>textbox</code>を持たせます。これでテキストボックスに書かれた文字などの情報が<code>textbox</code>に入っている<code>TextEditingController()</code>に入ります。</p>
+<pre><code language="language-dart" class="language-dart">trailing: ElevatedButton(
+  onPressed: () {
+    setState(() {
+      todos.add(textbox.text);
+      textbox.clear();
+    });
+  },
+  child: Text(&#39;追加&#39;)
+),
+</code></pre>
+<p>配列に要素を追加するには、<code>配列名.</code>add(追加したいもの)という書き方をします。今回は<code>todos</code>に<code>add</code>します。追加したいものは<code>textbox.text</code>になります。<code>.text</code>によって、<code>TextEditingController()</code>に入っている情報のテキスト要素を取り出しています。<br><code>textbox.clear()</code>は<code>add</code>したあとにテキストボックス内をリセットするということです。<code>add</code>したのにテキストボックス内に文字が残っていたら嫌です。</p>
+<pre><code language="language-dart" class="language-dart">todos.add(textbox.text);
+textbox.clear();
+print(todos);
+</code></pre>
+<p><code>print(todos)</code>によって、<code>todos</code>の中身を覗くことができます。consoleという手元で確認する用のパネルに表示します。</p>
+<p>テキストボックス内にテキストを入力して、追加ボタンを押したときにconsoleに文字が表示されたらOK！</p>
+<p class="image-container"><img alt="console" src="img\e37ac444b8b7d233.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="配列の中身を画面に表示" duration="0">
+        <p>いよいよ追加したToDoを画面に表示して見えるようにします。どうするかというと、配列の中身を画面に表示するWidgetを用います。</p>
+<h2 is-upgraded>Expanded()・ListView.builder()</h2>
+<p>ToDoをテキストボックスの上に表示させます。そのためには、<code>Column()</code>の中の<code>children[]</code>の中に、テキストボックスの上にWidgetを配置します。</p>
+<aside class="special"><p><code>Column()</code>の<code>children[]</code>は<code>[]</code>なので、配列になっています！配列の中身を縦列に順番に表示するWidgetですね。</p>
+</aside>
+<pre><code language="language-dart" class="language-dart">body: Column(
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+    Expanded(
+      child: ListView.builder(
+        itemCount: ,
+        itemBuilder: (context, index) {
+          return;
+        }
+      )
+    ),
+</code></pre>
+<p><code>Expanded()</code>Widgetは便利なWidgetで、子要素を縦幅いっぱいまで自動的に広げるWidgetです。普通縦幅を自分で設定しなければダメなのですが、これは自動的に広げてくれます。</p>
+<p><code>ListView.builder()</code>は指定した配列やデータベースから、要素を一個づつ表示させるWidgetです。<code>itemCount</code>は要素を全部で何個表示するかです。今回は<code>todos</code>配列の中身の数だけ表示させるので、こうします。</p>
+<pre><code language="language-dart" class="language-dart">itemCount: todos.length,
+</code></pre>
+<aside class="special"><p><code>配列名.</code>lengthで、配列の中身の要素数を扱うことができます。</p>
+</aside>
+<p>配列の中身の要素は<code>itemBuilder</code>の<code>return</code>の次に書かれた形で表示します。一つ一つの要素の見た目を<code>return</code>の次で決めるということです。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Card()" duration="0">
+        <p>先程の<code>return</code>の続きを作っていきましょう。非常に便利な<code>Card()</code>Widgetを使います。いい感じに影がついていて見やすいです。</p>
+<pre><code language="language-dart" class="language-dart">itemBuilder: (context, index) {
+  return Card(
+    child: Text(todos[index])
+  );
+}
+</code></pre>
+<p><code>Card()</code>の中身は<code>Text()</code>で<code>todos[index]</code>としました。配列の解説のところで、「配列名の何番目！」と呼ぶと、その値が取り出されると言いました。なので、<code>todos[0]</code>とすると<code>todos</code>の1番目が取り出され、<code>todos[1]</code>とすると<code>todos</code>の2番目が取り出されます。</p>
+<p>今回は、<code>index</code>番目としました。<code>index</code>とは、<code>itemBuilder</code>で使われている<code>index</code>という単語です。<code>itemBuilder</code>は配列の中身を1個づつすべてチェックしていくメソッドです。1個めをチェックしているときは<code>index</code>は<code>0</code>です。2個めをチェックしているときは<code>index</code>は<code>1</code>です。このように、<code>index</code>は順番に数字が＋１されていきます。これを利用しています。</p>
+<p class="image-container"><img alt="card" src="img\bf6d63b1b77169d9.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="再びListTile()。そしてIconButton()" duration="0">
+        <p>このままだと見づらい上に、いろいろボタンを置きたいので、<code>ListTile()</code>をまた使いましょう。（ほんと便利です）</p>
+<pre><code language="language-dart" class="language-dart">return Card(
+  child: ListTile(
+    title: Text(todos[index])
+  )
+);
+</code></pre>
+<p>とりあえず、<code>title</code>に<code>Text()</code>を置きました。いい感じに余白が空いて見やすくなったと思います。</p>
+<h2 is-upgraded>IconButton()</h2>
+<p>ToDoが完了したときの完了ボタン、ToDoを削除するときの削除ボタンをアイコンでやりたいと思います。そこで使うのが<code>IconButton()</code>Widgetです。</p>
+<pre><code language="language-dart" class="language-dart">child: ListTile(
+  leading: IconButton(
+    icon: Icon(Icons.check_circle),
+    onPressed: () {
+      
+    }
+  ),
+  title: Text(todos[index]),
+  trailing: IconButton(
+    icon: Icon(Icons.delete_outline),
+    onPressed: () {
+      
+    }
+  ),
+)
+</code></pre>
+<aside class="warning"><p>プロパティ終わりの<code>,</code>に注意！！</p>
+</aside>
+<p><code>ListTile()</code>の<code>leading</code>（左）と<code>trailing</code>（右）にアイコンを置きました。<code>IconButton()</code>の<code>icon</code>で何のアイコンを置くのか、<code>onPressed</code>で押されたときの処理を決めます。</p>
+<p>Fluterがあらかじめ用意してくれているアイコンを用いました。よくみるようなアイコンかと思います。ちなみに、Flutterのアイコンは十分以上にたくさんあります。ありすぎて、見ているだけで楽しいです。<a href="https://api.flutter.dev/flutter/material/Icons-class.html" target="_blank">Flutterのアイコンはこちら</a></p>
+<p class="image-container"><img alt="icon" src="img\f04fd8fd60a0cfd.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Iconを押したときの処理" duration="0">
+        <p><code>IconButton()</code>の<code>onPressed</code>の処理を何も書いていないので、押しても何も起こりません。タスク完了のチェックマークとゴミ箱ボタンを押したときの処理を書いてみましょう。<br> タスクが完了した時、または削除する時は配列内からその要素を消してあげれば画面に表示されなくなります。</p>
+<h2 is-upgraded>removeAt()</h2>
+<pre><code language="language-dart" class="language-dart">onPressed: () {
+  setState(() {
+    todos.removeAt(index);
+  });
+}
+</code></pre>
+<aside class="special"><p>チェックマークとゴミ箱の両方の<code>IconButton()</code>に書いてください！</p>
+</aside>
+<p><code>removeAt()</code>はWidgetではなく、メソッドです。配列内の特定番目の要素を削除するメソッドです。<code>removeAt( 0 )</code>とすると、配列内の１番目が削除されます。今回は<code>index</code>番目です。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ダイアログ表示" duration="0">
+        <p>これでも一応動作しますが、タスク完了とタスク削除の区別がつきにくいです。なので、削除するときは「削除しますか？」というダイアログを表示させてみます。</p>
+<h2 is-upgraded>AlertDialog()</h2>
+<p>ダイアログにも種類がありますが、<code>AlertDialog()</code>を使います。Flutterでダイアログを表示させるには一旦<code>showDialog()</code>というメソッドをかます必要があります。</p>
+<pre><code language="language-dart" class="language-dart">onPressed: () {
+  showDialog(
+    context: context,
+    builder: (_) {
+      return AlertDialog(
+
+      );
+    }
+  );
+}
+</code></pre>
+<p><code>AlertDialog()</code>の中身を書いていきます。</p>
+<pre><code language="language-dart" class="language-dart">return AlertDialog(
+  title: Text(&#39;削除しますか？&#39;),
+  actions: [
+    TextButton(
+      child: Text(&#39;削除&#39;),
+      onPressed: () {
+        setState(() {
+          todos.removeAt(index);
+        });
+        Navigator.pop(context);
+      },
+    ),
+    TextButton(
+      child: Text(&#39;キャンセル&#39;),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    ),
+  ],
+);
+</code></pre>
+<p><code>title</code>はダイアログのメインテキストです。<code>actions</code>は下部に表示されるボタン類を置く場所です。削除ボタンとキャンセルボタンを用意しました。つかうWidgetは<code>TextButton()</code>です。削除する場合は<code>onPressed</code>内に<code>removeAt(index)</code>で削除するメソッドを置いています。<br><code>Navigator.pop(context)</code>というのは、画面を一つ前の状態に戻す効果があります。このハンズオンでは実装しませんが、画面遷移をしたときに前の画面に戻すときもこれを使います。これを書かない場合、ボタンを押してもずっとダイアログが表示されたままになります。</p>
+<p class="image-container"><img alt="dialog" src="img\30e7e9f5fbeff9dd.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="validate" duration="0">
+        <p>気づいている人もいるかも知れませんが、テキストボックスを空白の状態で追加ボタンを押すと、空テキストで配列に追加されてしまいます。このようなことを防ぐために、テキストボックスの中身が不適切の場合は警告を出すことができます。それがバリデートというものです。</p>
+<h2 is-upgraded>流れ</h2>
+<p>少し複雑なので、システムの流れを始めに説明します。</p>
+<ol type="1">
+<li>追加ボタンを押したときにバリデートが走る</li>
+<li>バリデートの結果、問題なしなら配列に追加。問題ありなら３へ。</li>
+<li>内容が間違っていると警告を出す。</li>
+</ol>
+<h2 is-upgraded>keyが必要</h2>
+<p>テキストボックス内の状態を確認する一意の<code>key</code>というものがバリデートには必要です。<code>GlobalKey&lt;FormState&gt;()</code>という<code>key</code>を変数で用意して、それを<code>Form()</code>にセットします。</p>
+<pre><code language="language-dart" class="language-dart">var textbox = TextEditingController();
+var todos = [];
+var formKey = GlobalKey&lt;FormState&gt;();
+
+ListTile(
+  title: Form(
+    key: formKey,
+    child: TextFormField(
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="validate 実装" duration="0">
+        <p>まず、validateの処理を書いてみましょう。</p>
+<pre><code language="language-dart" class="language-dart">child: TextFormField(
+  decoration: InputDecoration(
+      border: OutlineInputBorder(), hintText: &#39;Todoを入力&#39;),
+  controller: textbox,
+  validator: (value) {
+    if (value.isEmpty) {
+      return &#39;テキストを入力してください&#39;;
+    }
+    return null;
+  },
+),
+</code></pre>
+<p><code>if () {}</code>はそのまま「もし」という意味です。<code>()</code>中身が真なら、<code>{}</code>の中の処理をするということになります。この場合、テキストボックス内が空っぽなら、「テキストを入力してください」という文字が画面に表示されることになります。空っぽでないなら<code>null</code>で何もしないということです。</p>
+<p>次に、この処理を追加ボタンを押したときに起動させます。</p>
+<pre><code language="language-dart" class="language-dart">trailing: ElevatedButton(
+  onPressed: () {
+    setState(() {
+      if (formKey.currentState.validate()) {
+        todos.add(textbox.text);
+        textbox.clear();
+      }
+    });
+  },
+  child: Text(&#39;追加&#39;)
+)
+</code></pre>
+<p><code>formKey.currentState.validate()</code>の部分で、上で用意したvalidateの処理が実行されます。そして、問題がなければ配列に追加する処理がなされます。問題があれば、上で設定した警告文が表示されます。</p>
+<p class="image-container"><img alt="validate" src="img\714be6260719227c.png"></p>
+<p>これでこのSimple Todoアプリで必要なすべての機能を実装することができました！！</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="実はFlutterは身近にある？" duration="0">
+        <p>最後にFlutterっぽいアプリは最近良く目にするようになってきているという話をして終わりたいと思います。</p>
+<p>最初に話したように、Flutterはとても新しい技術です。ですが、かなり開発元のGoogleさんはやる気があってコミュニティも活発なので、Flutterのアプリは多くなってきています。</p>
+<p>調べてもいまいちヒットしなかったので、ただの私の予想ですが、多分YoutubeアプリはFlutterだと思っています。</p>
+<p class="image-container"><img alt="screen" src="img\dbc99f9984970570.png"></p>
+<p>この画像のように、下のアイコンとは動画タイトルとが右のボタンとか。これって多分<code>ListTile()</code>でつくっているように思いませんか？</p>
+<p>ただの一例ですが、Flutterを触っていると、「このアプリFlutter臭い！」と感じることが多々あります。これからこのような経験が増えていくと思っています。</p>
+<p>dloppのFlutterハンズオンはこれにて以上となります。ありがとうございました～！</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
