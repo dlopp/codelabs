@@ -1,9 +1,4 @@
-author: @yuto14prog
-summary: Flutter の簡単な ToDo アプリ
 id: todo_app_for_mobile
-categories: codelab,markdown
-environments: Web
-status: Published
 
 # Flutter を用いた簡単な ToDo アプリを作ろう
 
